@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- <input id="img" type="file" name="imagen" onchange="showImage()" value=""> -->
+    <canvas id="canvas" width="900" height="600" style="border:#000 solid 1px;"></canvas>
+    <input type="button" onclick="filtroBN()" name="" value="Filtro">
+  </body>
+  <script>
+  //w3school
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var width = ctx.canvas.width;
+    var heigth = ctx.canvas.heigth;
+
+
+    var img1 = new Image();
+  
+    img1.crossOrigin="Anonymous";
+    img1.src="https://http2.mlstatic.com/50-globos-lisos-comunes-color-o-multicolor-super-oferta-D_NQ_NP_20528-MLA20192566150_112014-F.jpg";
+
+    console.log(img1.src);
+
+    img1.onload = function () {
+      ctx.drawImage(this,0,0);
+    }
+
+    function filtroBN() {
+      imageData = ctx.getImageData(0,0,img1.width,img1.height);
+
+      for (var i = 0; i < img1.width; i++) {
+        for (var j = 0; j < img1.height; j++) {
+          var colorBN =  Math.floor(getRed(imageData,i,j)+getGreen(imageData,i,j)+getBlue(imageData,i,j) /3);//tomo el color negro del px
+          setPixel(imageData,i,j,colorBN,colorBN,colorBN,255);
+        }
+      }
+       ctx.putImageData(imageData,0,0);
+    }
+
+    function getRed(imageData,x,y) {
+      index = (x+y* imageData.width)*4;
+      return imageData.data[index+0];
+    }
+
+    function getGreen(imageData,x,y) {
+      index = (x+y* imageData.width)*4;
+      return imageData.data[index+1];
+    }
+
+    function getBlue(imageData,x,y) {
+      index = (x+y* imageData.width)*4;
+      return imageData.data[index+2];
+    }
+
+    function setPixel(imageData,x,y,r,g,b,a) {
+
+      var index = ( x + y * imageData.width)*4;
+      imageData.data[index+0]=r;
+      imageData.data[index+1]=g;
+      imageData.data[index+2]=b;
+      imageData.data[index+3]=a;
+    }
+  </script>
+</html>
