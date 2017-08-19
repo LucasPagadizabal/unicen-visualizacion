@@ -27,35 +27,35 @@
         </div>
 
         <div class="col-md-6">
-          <img id="editor" src="images/back-azul.jpg" class="img-thumbnail" alt="Portal-Imagen">
+          <canvas id="canvas" width="540" height="340" style="border:#000 solid 1px;"></canvas>
+          <!-- <img id="editor" src="images/back-azul.jpg" class="img-thumbnail" alt="Portal-Imagen"> -->
         </div>
 
         <div class="col-md-6" style="margin-top:5%">
-          <button class="btn btn-block " type="button" name="button">Efecto 1</button>
-          <br>
-          <button class="btn btn-block " type="button" name="button">Efecto 2</button>
-          <br>
-          <button class="btn btn-block " type="button" name="button">Efecto 3</button>
-          <br>
-          <button class="btn btn-block " type="button" name="button">Efecto 4</button>
+          <div class="row container">
+            <button class="btn col-md-3" type="button" name="button" onclick="filtroBN()">Blanco y Negro</button>
+            <button style="margin-left : 3%;" class="btn col-md-3" type="button" onclick="negativo()" name="button">Negativo</button>
+            <button style="margin-left : 3%;" class="btn col-md-3" type="button" onclick="sepia()" name="button">Sepia</button>
+            <button style="margin-top : 10px;" class="btn col-md-3" type="button" onclick="brillo()" name="button">Brillo</button>
+            <button style="margin-top : 10px;margin-left : 3%;" class="btn col-md-3" type="button" onclick="saturacion()" name="button">Saturacion</button>
+            <button style="margin-top : 10px;margin-left : 3%;" class="btn col-md-3" type="button" onclick=" suavizado()" name="button">Suavizado</button>
+          </div>
         </div>
 
         <div class="col-md-6">
           <br>
-          <input id="btn-selectImg" type="file" name="" value="" hidden="hidden">
+          <input id="btn-selectImg" type="file" onchange="cargaImg()" name="" value="" hidden="hidden">
           <button class="btn col-md-5" type="button" name="button" onclick="selectImg()">Cargar Imagen</button>
         </div>
 
-        <div class="col-md-6" >
+        <div class="col-md-6 container" >
           <br>
-          <button class="btn save col-md-5"type="button" name="button">Guardar</button>
+          <button class="btn save col-md-5"type="button" onclick="save()" name="button">Guardar</button>
         </div>
 
       </div>
     </div>
 
-  <script src="js/master.js">
-
-  </script>
+  <script src="js/master.js"></script>
   </body>
 </html>
