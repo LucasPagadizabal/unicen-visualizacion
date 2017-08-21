@@ -12,7 +12,7 @@
 var imgOrigin = null;//tomamos la img original
 var srcOrigin = "images/girl.jpg";
 var ctx = document.getElementById("canvas").getContext("2d");
-
+var ctrCargaImg = false;
 function loadImgDefault() {
   // Carga de imagen por defecto
   var imagenDefault = new Image();
@@ -25,11 +25,13 @@ function loadImgDefault() {
 loadImgDefault();
 
 function selectImg() {
+  ctrCargaImg = true;
   document.getElementById('btn-selectImg').click();
 }
 
 //Funcion para la carga de imagenes
  function cargaImg() {
+   if (ctrCargaImg) {
      var imagen = new Image();
      imagen.src =document.getElementById('btn-selectImg').files[0].name;
      srcOrigin = imagen.src;
@@ -37,11 +39,13 @@ function selectImg() {
      imagen.onload = function () {
        myDrawImage(this);
      }
-    loadImgDefault();
-
+     loadImgDefault();
+   }else{
+     loadImgDefault();
+   }
  }
 
- function myDrawImage(imagen) {
+ function myDrawImage(imagen) {//funcion que dibuja la imagen en el canvas
    ctx.drawImage(imagen,0,0);
  }
 
@@ -114,18 +118,28 @@ function binarizacion() {
 
 //Filtro Brillo
 function brillo() {
-  var imageData = ctx.getImageData(0,0,imagen.width,imagen.height);
-  var pixeles = imageData.data;
-  var cantPixel = imageData.width * imageData.height;
-  for (var i = 0; i < cantPixel; i++) {
-    // var r = pixeles[i*4];
-    // var g = pixeles[i*4 + 1];
-    // var b = pixeles[i*4 + 2];
+    myDrawImage(imgOrigin);
+  var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
-    pixeles[ i * 4 ] += 90;
-    pixeles[ i * 4 + 1 ] += 90;
-    pixeles[ i * 4 + 2 ] += 90;
-  }
+  for (var y = 0; y < imageData.height; y++) {
+       for (var x = 0; x < imageData.width; x++) {
+         var r = getRed(imageData,x,y) +90;
+         var g = getGreen(imageData,x,y)+90;
+         var b = getBlue(imageData,x,y)+90;
+         setPixel(imageData,x,y,r,g,b,255);
+       }
+     }
+  // var pixeles = imageData.data;
+  // var cantPixel = imageData.width * imageData.height;
+  // for (var i = 0; i < cantPixel; i++) {
+  //   // var r = pixeles[i*4];
+  //   // var g = pixeles[i*4 + 1];
+  //   // var b = pixeles[i*4 + 2];
+  //
+  //   pixeles[ i * 4 ] += 90;
+  //   pixeles[ i * 4 + 1 ] += 90;
+  //   pixeles[ i * 4 + 2 ] += 90;
+  // }
      ctx.putImageData(imageData,0,0);
 }
 
