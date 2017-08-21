@@ -2,36 +2,43 @@
 // negativo--
 // greyscale
 // sepia(variantes)--
-// binarizacion
+// binarizacion--
 // brillo
 // ------
 // saturacion
 // suavizado
 // deteccion bordes
 // blur
+var imgOrigin = null;//tomamos la img original
+var srcOrigin = "images/girl.jpg";
+var ctx = document.getElementById("canvas").getContext("2d");
 
+function loadImgDefault() {
+  // Carga de imagen por defecto
+  var imagenDefault = new Image();
+  imagenDefault.src =srcOrigin;
+  imgOrigin = imagenDefault;
+  imagenDefault.onload = function () {
+    myDrawImage(this);
+  }
+}
+loadImgDefault();
 
 function selectImg() {
   document.getElementById('btn-selectImg').click();
 }
 
-var ctx = document.getElementById("canvas").getContext("2d");
-var width = ctx.canvas.width;
-var heigth = ctx.canvas.heigth;
-
-var imagen = new Image();
-imagen.src ="truck.jpg";
-imagen.onload = function () {
-  myDrawImage(this);
-}
-
+//Funcion para la carga de imagenes
  function cargaImg() {
-   var imagen = new Image();
-   imagen.src =document.getElementById('btn-selectImg').files[0].name;
-   console.log(imagen.src);
-   imagen.onload = function () {
-     myDrawImage(this);
-   }
+     var imagen = new Image();
+     imagen.src =document.getElementById('btn-selectImg').files[0].name;
+     srcOrigin = imagen.src;
+     imgOrigin = imagen;
+     imagen.onload = function () {
+       myDrawImage(this);
+     }
+    loadImgDefault();
+
  }
 
  function myDrawImage(imagen) {
@@ -40,72 +47,68 @@ imagen.onload = function () {
 
  //Filtro Blanco y Negro
  function filtroBN() {
-   imageData = ctx.getImageData(0,0,imagen.width,imagen.height);
+   myDrawImage(imgOrigin);
+   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
-   for (var i = 0; i < imagen.width; i++) {
-     for (var j = 0; j < imagen.height; j++) {
-       var colorBN =  Math.floor(getRed(imageData,i,j)+getGreen(imageData,i,j)+getBlue(imageData,i,j) /3);//tomo el color negro del px
-       setPixel(imageData,i,j,colorBN,colorBN,colorBN,255);
-     }
-   }
+  for (var i = 0; i < imageData.height; i++) {
+        for (var j = 0; j < imageData.width; j++) {
+            var pos = (i * 4) * imageData.width + j * 4;
+            var rgb = (imageData.data[pos] + imageData.data[pos + 1] + imageData.data[pos + 2]) / 3;
+            imageData.data[pos] = rgb;
+            imageData.data[pos + 1] = rgb;
+            imageData.data[pos + 2] = rgb;
+        }
+    }
     ctx.putImageData(imageData,0,0);
  }
 
  //Filtro Negativo
  function negativo() {
-    var imageData = ctx.getImageData(0,0,imagen.width,imagen.height);
-     for (var i=0;i<imageData.data.length;i+=4){
-          imageData.data[i]=255-imageData.data[i];
-          imageData.data[i+1]=255-imageData.data[i+1];
-          imageData.data[i+2]=255-imageData.data[i+2];
-          imageData.data[i+3]=255;
-    }
-    ctx.putImageData(imageData,0,0);
+    myDrawImage(imgOrigin);
+    var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+
+    for (var y = 0; y < imageData.height; y++) {
+       for (var x = 0; x < imageData.width; x++) {
+           setPixel(imageData, x, y, 255 - getRed(imageData, x, y), 255 - getBlue(imageData, x, y), 255 - getGreen(imageData, x, y), 255);
+       }
+   }
+   ctx.putImageData(imageData,0,0);
  }
 
  //Filtro Sepia
  function sepia() {
-   var imageData = ctx.getImageData(0,0,imagen.width,imagen.height);
-   var pixeles = imageData.data;
-   var cantPixel = imageData.width * imageData.height;
-   for (var i = 0; i < cantPixel; i++) {
-     var r = pixeles[i*4];
-     var g = pixeles[i*4 + 1];
-     var b = pixeles[i*4 + 2];
+   myDrawImage(imgOrigin);
+  var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+  for (var y = 0; y < imageData.height; y++) {
+       for (var x = 0; x < imageData.width; x++) {
 
-     pixeles[i*4] = 255 - r;
-     pixeles[i*4 + 1] = 255 - g;
-     pixeles[i*4 + 2] = 255 - b;
+           var red = (getRed(imageData, x, y) * .393) + (getGreen(imageData, x, y) * .769) + (getBlue(imageData, x, y) * .189);
+           var green = (getRed(imageData, x, y) * .349) + (getGreen(imageData, x, y) * .686) + (getBlue(imageData, x, y) * .168);
+           var blue = (getRed(imageData, x, y) * .272) + (getGreen(imageData, x, y) * .534) + (getBlue(imageData, x, y) * .131);
 
-     pixeles[ i * 4 ] = ( r * .393 ) + ( g *.769 ) + ( b * .189 );
-     pixeles[ i * 4 + 1 ] = ( r * .349 ) + ( g *.686 ) + ( b * .168 );
-     pixeles[ i * 4 + 2 ] = ( r * .272 ) + ( g *.534 ) + ( b * .131 );
+           setPixel(imageData, x, y, red, green, blue, 255);
+       }
    }
    ctx.putImageData(imageData,0,0);
 
  }
 //Filtro Binarizacion
 function binarizacion() {
-  var imageData = ctx.getImageData(0,0,imagen.width,imagen.height);
-  var pixeles = imageData.data;
-  var cantPixel = imageData.width * imageData.height;
+  myDrawImage(imgOrigin);
+  var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
-  for (var i = 0; i < cantPixel; i++) {
-    var r = pixeles[i*4];
-    var g = pixeles[i*4 + 1];
-    var b = pixeles[i*4 + 2];
-    var gris =  (0.299 * r + 0.587 * g + 0.114 * b);
+  for (var y = 0; y < imageData.height; y++) {
+       for (var x = 0; x < imageData.width; x++) {
+           var rgb = (getRed(imageData, x, y) + getGreen(imageData, x, y) + getBlue(imageData, x, y)) / 3;
+           if (rgb > 128) {
+               setPixel(imageData, x, y, 0, 0, 0, 255);
+           }
+           else {
+               setPixel(imageData, x, y, 255, 255, 255, 255);
+           }
 
-    if(gris < 128){
-      pixeles[i*4] = 0;
-      pixeles[i*4 + 1] = 0;
-      pixeles[i*4 + 2]; 0;
-    }else{
-      pixeles[i*4] = 255;
-      pixeles[i*4 + 1] = 255;
-      pixeles[i*4 + 2]; 255;
-    }
-  }
+       }
+   }
   ctx.putImageData(imageData,0,0);
 }
 
@@ -121,7 +124,7 @@ function brillo() {
 
     pixeles[ i * 4 ] += 90;
     pixeles[ i * 4 + 1 ] += 90;
-    pixeles[ i * 4 + 2 ] += 90; 
+    pixeles[ i * 4 + 2 ] += 90;
   }
      ctx.putImageData(imageData,0,0);
 }
@@ -142,10 +145,13 @@ function brillo() {
  }
 
  function setPixel(imageData,x,y,r,g,b,a) {
-
    var index = ( x + y * imageData.width)*4;
    imageData.data[index+0]=r;
    imageData.data[index+1]=g;
    imageData.data[index+2]=b;
    imageData.data[index+3]=a;
+ }
+
+ function save() {
+   ctx.toDataURL("image/png");
  }

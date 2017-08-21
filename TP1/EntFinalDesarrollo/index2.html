@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="text-center text">
+            <p>¡Bienvenidos al mejor editor de Imagenes del Mundo!</p>
+          </div>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <canvas id="canvas" width="540" height="340" style="border:#000 solid 1px;"></canvas>
+        </div>
+
+        <div class="align-bottom col-md-12">
+          <input id="btn-selectImg" type="file" onchange="cargaImg()" name="" value="" hidden="hidden">
+          <button class="btn col-md-3" type="button" name="button" onclick="selectImg()" style="margin-bottom: 1%;">Cargar Imagen</button>
+          <button class="btn save col-md-3"type="button" onclick="save()" name="button">Guardar</button>
+        </div>
+
+        <div class="row">
+          <img id="img-origin" onclick="cargaImg();" width="170" height="170" src="images/girl.jpg" class="img-thumbnail" alt="Portal-Imagen">
+          <img src="images/girlbn.png" onclick="filtroBN();" width="170" height="170" alt="" class="img-thumbnail">
+          <img src="images/girlsepia.png" onclick="sepia();" width="170" height="170" alt="" class="img-thumbnail">
+          <img src="images/girlneg.png" onclick="negativo();" width="170" height="170" alt="" class="img-thumbnail">
+          <img src="images/girlbinario.png" onclick="binarizacion();" width="170" height="170" alt="" class="img-thumbnail">
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="js/bootstrap.min.js"></script>
+  <script src="js/master.js"></script>
+  </body>
+</html>
