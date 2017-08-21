@@ -3,7 +3,7 @@
 // greyscale
 // sepia(variantes)--
 // binarizacion--
-// brillo
+// brillo--
 // ------
 // saturacion
 // suavizado
