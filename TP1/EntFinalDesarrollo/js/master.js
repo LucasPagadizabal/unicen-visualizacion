@@ -11,11 +11,11 @@
 // suavizado
 // deteccion bordes
 // blur---
-
 var imgOrigin = null;//tomamos la img original
 var srcOrigin = "images/paisaje.jpg";
 var ctx = document.getElementById("canvas").getContext("2d");
 var ctrCargaImg = false;
+
 function loadImgDefault() {
   // Carga de imagen por defecto
   var imagenDefault = new Image();
@@ -24,6 +24,7 @@ function loadImgDefault() {
   imagenDefault.onload = function () {
     myDrawImage(this);
   }
+
 }
 loadImgDefault();
 
@@ -42,6 +43,7 @@ function selectImg() {
      imagen.onload = function () {
        myDrawImage(this);
      }
+     $("#imgSinFiltro").attr("src",imagen.src);
      loadImgDefault();
    }else{
      loadImgDefault();
@@ -54,6 +56,7 @@ function selectImg() {
 
  //Filtro Blanco y Negro
  function filtroBN() {
+
    myDrawImage(imgOrigin);
    var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
@@ -71,6 +74,7 @@ function selectImg() {
 
  //Filtro Negativo
  function negativo() {
+
     myDrawImage(imgOrigin);
     var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
@@ -120,15 +124,15 @@ function binarizacion() {
 }
 
 //Filtro Brillo
-function brillo() {
-    myDrawImage(imgOrigin);
+function brillo(cantBrillo) {
+  myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
   for (var y = 0; y < imageData.height; y++) {
        for (var x = 0; x < imageData.width; x++) {
-         var r = getRed(imageData,x,y) +90;
-         var g = getGreen(imageData,x,y)+90;
-         var b = getBlue(imageData,x,y)+90;
+         var r = getRed(imageData,x,y) +cantBrillo;
+         var g = getGreen(imageData,x,y)+cantBrillo;
+         var b = getBlue(imageData,x,y)+cantBrillo;
          setPixel(imageData,x,y,r,g,b,255);
        }
      }
@@ -158,10 +162,6 @@ function brillo() {
    imageData.data[index+3]=a;
  }
 
- function save() {
-   ctx.toDataURL("image/png");
- }
-
  function saturacion() {
    myDrawImage(imgOrigin);
    var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -172,7 +172,7 @@ function brillo() {
           var g = getGreen(imageData,x,y);
           var b = getBlue(imageData,x,y);
           var hsl = rgbToHsl(r,g,b);//pasaje de rgb a hsl
-          hsl[1] = 0.7;//saturacion de pixel
+          hsl[1] = 1;//saturacion de pixel
           var rgb = hslToRgb(hsl[0],hsl[1],hsl[2]);
           setPixel(imageData,x,y,rgb[0],rgb[1],rgb[2],255);
         }
@@ -187,7 +187,7 @@ function brillo() {
    var h, s, l = (max + min) / 2;
 
    if (max == min) {
-     h = s = 0; // achromatic
+     h = s = 0;
    } else {
      var d = max - min;
      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -207,7 +207,7 @@ function brillo() {
   var r, g, b;
 
   if (s == 0) {
-    r = g = b = l; // achromatic
+    r = g = b = l;
   } else {
     function hue2rgb(p, q, t) {
       if (t < 0) t += 1;
@@ -260,20 +260,18 @@ function convolute (pixels, weights, opaque) {
   var src = pixels.data;
   var sw = pixels.width;
   var sh = pixels.height;
-  // pad output by the convolution matrix
+
   var w = sw;
   var h = sh;
   var output = createImageData(w, h);
   var dst = output.data;
-  // go through the destination image pixels
-  var alphaFac = opaque ? 1 : 0;
+
   for (var y=0; y<h; y++) {
     for (var x=0; x<w; x++) {
       var sy = y;
       var sx = x;
       var dstOff = (y*w+x)*4;
-      // calculate the weighed sum of the source image pixels that
-      // fall under the convolution matrix
+
       var r=0, g=0, b=0, a=0;
       for (var cy=0; cy<side; cy++) {
         for (var cx=0; cx<side; cx++) {
@@ -292,8 +290,21 @@ function convolute (pixels, weights, opaque) {
       dst[dstOff] = r;
       dst[dstOff+1] = g;
       dst[dstOff+2] = b;
-      dst[dstOff+3] = a + alphaFac*(255-a);
+      dst[dstOff+3] = a;
     }
   }
   return output;
 };
+
+function downloadCanvas(link, canvasId, filename) {
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+}
+
+document.getElementById('download').addEventListener('click', function() {
+    downloadCanvas(this, 'canvas', 'test.png');
+}, false);
+
+$("#range").change(function () {
+  brillo(this.value/0.5);
+});
