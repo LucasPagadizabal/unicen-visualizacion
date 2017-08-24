@@ -17,13 +17,14 @@
 
         <div class="col-md-12 container-fluid">
           <div class="text-center text">
-            <p>¡Bienvenidos al mejor editor de Imagenes del Mundo!</p>
+            <h3>¡Bienvenidos al mejor editor de Imagenes del Mundo!</h3>
           </div>
         </div>
 
         <div class="container col-md-12">
           <div class="col-md-4">
-            <input id="range" type="range" name="" value="" style="margin-top:50px; margin-left:10px;">
+            <label class="text" for="ranger">Brillo</label>
+            <input id="range" type="range" name="" value="50" style="margin-top:px; margin-left:10px;">
             <img id="imgSinFiltro" width="350" height="300" src="images/paisaje.jpg" class="img-thumbnail img-responsive" alt="img-orginal">
             <input id="btn-selectImg" type="file" onchange="cargaImg()" name="" value="images/paisaje.jpg" style="display:none">
             <button class="btn-primary btn col-md-4" style="margin-top:1px; margin-left:10px;" type="button" name="button" onclick="selectImg()" style="margin-bottom: 1%;">Cargar Imagen</button>

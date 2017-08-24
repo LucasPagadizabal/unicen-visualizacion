@@ -36,14 +36,15 @@ function selectImg() {
 //Funcion para la carga de imagenes
  function cargaImg() {
    if (ctrCargaImg) {
-     var imagen = new Image();
-     imagen.src =document.getElementById('btn-selectImg').files[0].name;
-     srcOrigin = imagen.src;
-     imgOrigin = imagen;
-     imagen.onload = function () {
-       myDrawImage(this);
-     }
-     $("#imgSinFiltro").attr("src",imagen.src);
+
+     var fileInput = document.querySelector("#btn-selectImg");
+     var reader = new FileReader();
+     reader.onload = function (e) {
+         imgOrigin.src = e.target.result;
+         $("#imgSinFiltro").attr("src",e.target.result);
+
+     };
+     reader.readAsDataURL(fileInput.files[0]);
      loadImgDefault();
    }else{
      loadImgDefault();
@@ -236,35 +237,35 @@ function createImageData(w,h){
 function difumado() {
   myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
-  var a = convolute(imageData,[1 / 9, 1 / 9, 1 / 9,1 / 9, 1 / 9, 1 / 9,1 / 9, 1 / 9, 1 / 9]);
-  ctx.putImageData(a,0,0);
+  var imgRes = convolute(imageData,[1 / 9, 1 / 9, 1 / 9,1 / 9, 1 / 9, 1 / 9,1 / 9, 1 / 9, 1 / 9]);
+  ctx.putImageData(imgRes,0,0);
 }
 
 function sharpen() {
   myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
-  var a = convolute(imageData,[  0, -1,  0,-1,  5, -1,0, -1,  0 ]);
-  ctx.putImageData(a,0,0);
+  var imgRes = convolute(imageData,[  0, -1,  0,-1,  5, -1,0, -1,  0 ]);
+  ctx.putImageData(imgRes,0,0);
 }
 
 function reputed() {
   myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
-  var a = convolute(imageData,[  -2, -1,  0,-1,  1, 1,0, 1,  2 ]);
-  ctx.putImageData(a,0,0);
+  var imgRes = convolute(imageData,[  -2, -1,  0,-1,  1, 1,0, 1,  2 ]);
+  ctx.putImageData(imgRes,0,0);
 }
 
-function convolute (pixels, weights, opaque) {
-  var side = Math.round(Math.sqrt(weights.length));
+function convolute (imgData, kernel) {
+  var side = Math.round(Math.sqrt(kernel.length));
   var halfSide = Math.floor(side/2);
-  var src = pixels.data;
-  var sw = pixels.width;
-  var sh = pixels.height;
+  var src = imgData.data;
+  var sw = imgData.width;
+  var sh = imgData.height;
 
   var w = sw;
   var h = sh;
-  var output = createImageData(w, h);
-  var dst = output.data;
+  var imgRes = createImageData(w, h);
+  var dst = imgRes.data;
 
   for (var y=0; y<h; y++) {
     for (var x=0; x<w; x++) {
@@ -279,7 +280,7 @@ function convolute (pixels, weights, opaque) {
           var scx = sx + cx - halfSide;
           if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
             var srcOff = (scy*sw+scx)*4;
-            var wt = weights[cy*side+cx];
+            var wt = kernel[cy*side+cx];
             r += src[srcOff] * wt;
             g += src[srcOff+1] * wt;
             b += src[srcOff+2] * wt;
@@ -293,7 +294,7 @@ function convolute (pixels, weights, opaque) {
       dst[dstOff+3] = a;
     }
   }
-  return output;
+  return imgRes;
 };
 
 function downloadCanvas(link, canvasId, filename) {
@@ -302,9 +303,9 @@ function downloadCanvas(link, canvasId, filename) {
 }
 
 document.getElementById('download').addEventListener('click', function() {
-    downloadCanvas(this, 'canvas', 'test.png');
+    downloadCanvas(this, 'canvas', 'canvas.png');
 }, false);
 
 $("#range").change(function () {
-  brillo(this.value/0.5);
+  brillo(this.value-25);
 });
