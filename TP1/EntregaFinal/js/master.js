@@ -277,14 +277,14 @@ function reputed() {
 }
 
 function convolute (imgData, kernel) {
-  var side = Math.round(Math.sqrt(kernel.length));
-  var halfSide = Math.floor(side/2);
-  var src = imgData.data;
-  var sw = imgData.width;
-  var sh = imgData.height;
+  var lado = Math.round(Math.sqrt(kernel.length));
+  var mitad = Math.floor(lado/2);
+  var imagen = imgData.data;
+  // var sw = imgData.width;
+  // var sh = imgData.height;
 
-  var w = sw;
-  var h = sh;
+  var w = imgData.width;
+  var h = imgData.height;
   var imgRes = createImageData(w, h);
   var dst = imgRes.data;
 
@@ -295,17 +295,17 @@ function convolute (imgData, kernel) {
       var dstOff = (y*w+x)*4;
 
       var r=0, g=0, b=0, a=0;
-      for (var cy=0; cy<side; cy++) {
-        for (var cx=0; cx<side; cx++) {
-          var scy = sy + cy - halfSide;
-          var scx = sx + cx - halfSide;
-          if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
-            var srcOff = (scy*sw+scx)*4;
-            var wt = kernel[cy*side+cx];
-            r += src[srcOff] * wt;
-            g += src[srcOff+1] * wt;
-            b += src[srcOff+2] * wt;
-            a += src[srcOff+3] * wt;
+      for (var cy=0; cy<lado; cy++) {
+        for (var cx=0; cx<lado; cx++) {
+          var scy = sy + cy - mitad;
+          var scx = sx + cx - mitad;
+          if (scy >= 0 && scy < imgData.height && scx >= 0 && scx < imgData.width) {
+            var srcOff = (scy*imgData.width+scx)*4;
+            var wt = kernel[cy*lado+cx];
+            r += imagen[srcOff] * wt;
+            g += imagen[srcOff+1] * wt;
+            b += imagen[srcOff+2] * wt;
+            a += imagen[srcOff+3] * wt;
           }
         }
       }
@@ -339,21 +339,21 @@ function rotarVertical() {
   transform([1, 0, 0, -1, 0, ctx.canvas.height-1]);
 }
 
-var transform = function(matrix){
-  var w = ctx.canvas.width;
-  var h = ctx.canvas.height;
-  var pxlData = ctx.getImageData( 0, 0, w,h).data;
-  var imageData = ctx.createImageData(w, h);
-  var newPxlData = imageData.data;
-  for (var x = 0; x < w; x++){
-    for (var y = 0; y < h; y++){
-      var nx = Math.floor(matrix[0]*x + matrix[2]*y + matrix[4]);
-      var ny = Math.floor(matrix[1]*x + matrix[3]*y + matrix[5]);
-      if (nx >= 0 && nx < w && ny>=0 && ny < h){
-        newPxlData[(y*w + x)*4]     = pxlData[(ny*w + nx)*4];
-        newPxlData[(y*w + x)*4 + 1] = pxlData[(ny*w + nx)*4 + 1];
-        newPxlData[(y*w + x)*4 + 2] = pxlData[(ny*w + nx)*4 + 2];
-        newPxlData[(y*w + x)*4 + 3] = pxlData[(ny*w + nx)*4 + 3];
+var transform = function(kernel){
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+   var pixeles = ctx.getImageData( 0, 0, width,height).data;
+  var imageData = ctx.createImageData(width, height);
+  var pixelesAux = imageData.data;
+  for (var x = 0; x < width; x++){
+    for (var y = 0; y < height; y++){
+      var nx = Math.floor(kernel[0]*x + kernel[2]*y + kernel[4]);
+      var ny = Math.floor(kernel[1]*x + kernel[3]*y + kernel[5]);
+      if (nx >= 0 && nx < width && ny>=0 && ny < height){
+        pixelesAux[(y*width + x)*4]     = pixeles[(ny*width + nx)*4];
+        pixelesAux[(y*width + x)*4 + 1] = pixeles[(ny*width + nx)*4 + 1];
+        pixelesAux[(y*width + x)*4 + 2] = pixeles[(ny*width + nx)*4 + 2];
+        pixelesAux[(y*width + x)*4 + 3] = pixeles[(ny*width + nx)*4 + 3];
       }
     }
   }

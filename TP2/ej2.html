@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <canvas id="canvas"  width="900" height="900" style="border:#000 solid 1px;"></canvas>
+  </body>
+  <script>
+  //w3school
+    // var canvas = document.getElementById('canvas');
+    var ctx = document.getElementById("canvas").getContext("2d");
+
+    function Circle() {
+      this.posX = 20;
+      this.posY = 20;
+      this.radio = 10;
+      this.color = 'red';
+    }
+
+    function Circle(posX,posY,radio,color) {
+      this.posX = posX;
+      this.posY = posY;
+      this.radio = radio;
+      this.color = color;
+    }
+
+      Circle.prototype.message = function () {
+        alert(this.radio);
+      }
+
+      Circle.prototype.draw = function () {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.posX,this.posY,this.radio,0,Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+      }
+
+    function Rectangulo(posX,posY,ladoA,ladoB,color) {
+      this.posX = posX;
+      this.posY = posY;
+      this.ladoA = ladoA;
+      this.ladoB = ladoB;
+      this.color = color;
+    }
+
+    Rectangulo.prototype.draw = function () {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.fillRect(this.posX,this.posY,this.ladoA,this.ladoB);
+      ctx.closePath();
+    }
+
+    Rectangulo.prototype.setImg = function (imagen) {
+        ctx.fillStyle = imagen;
+        ctx.rect(Math.floor(this.posX),Math.floor(this.posY),Math.floor(this.ladoA),Math.floor(this.ladoB));
+        ctx.fill();
+
+    }
+
+    // var circle = new Circle(Math.random()*500,Math.random()*500,100,getRandomColor());
+    // circle.draw();
+    //
+    var rect = new Rectangulo(Math.random()*500,Math.random()*500,Math.random()*500,Math.random()*500,getRandomColor());
+    //rect.draw();
+
+
+
+    // var gradiente = ctx.createLinearGradient(10,90,200,90);
+    // gradiente.addColorStop(0,'black');
+    // gradiente.addColorStop(0.5,'yellow');
+    // gradiente.addColorStop(1,'red');
+    // ctx.fillStyle = gradiente;
+    // ctx.fillRect(10,10, 200,200);
+
+    var img = new Image();
+    img.src="gatos.jpg";
+    img.onload = function () {
+      var imagen = ctx.createPattern(img,'repeat');
+        rect.setImg(imagen);
+      // ctx.rect(0,0,540,340);
+      // ctx.fillStyle = imagen;
+      // ctx.fill();
+    }
+
+
+
+    function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+  </script>
+</html>
