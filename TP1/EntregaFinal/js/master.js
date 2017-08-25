@@ -1,6 +1,6 @@
 //filtros
 // negativo--
-// greyscale
+// greyscale--
 // sepia(variantes)--
 // binarizacion--
 // brillo--
@@ -125,7 +125,6 @@ function binarizacion() {
 
 //Filtro Brillo
 function brillo(cantBrillo) {
-  // myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
   for (var y = 0; y < imageData.height; y++) {
