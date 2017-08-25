@@ -125,7 +125,7 @@ function binarizacion() {
 
 //Filtro Brillo
 function brillo(cantBrillo) {
-  myDrawImage(imgOrigin);
+  // myDrawImage(imgOrigin);
   var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
 
   for (var y = 0; y < imageData.height; y++) {
@@ -227,12 +227,6 @@ function brillo(cantBrillo) {
   }
 
   return [ r * 255, g * 255, b * 255 ];
-}
-
-function deteccionBordes() {
-  myDrawImage(imgOrigin);
-  var imageData = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
-  var imgRes = recorridoMatriz(imageData,);
 }
 
 function difumado() {
@@ -337,3 +331,32 @@ document.getElementById('download').addEventListener('click', function() {
 $("#range").change(function () {
   brillo(this.value-25);
 });
+
+function rotarHor() {
+  transform([-1, 0, 0, 1, ctx.canvas.width-1, 0]);
+}
+
+function rotarVertical() {
+  transform([1, 0, 0, -1, 0, ctx.canvas.height-1]);
+}
+
+var transform = function(matrix){
+  var w = ctx.canvas.width;
+  var h = ctx.canvas.height;
+  var pxlData = ctx.getImageData( 0, 0, w,h).data;
+  var imageData = ctx.createImageData(w, h);
+  var newPxlData = imageData.data;
+  for (var x = 0; x < w; x++){
+    for (var y = 0; y < h; y++){
+      var nx = Math.floor(matrix[0]*x + matrix[2]*y + matrix[4]);
+      var ny = Math.floor(matrix[1]*x + matrix[3]*y + matrix[5]);
+      if (nx >= 0 && nx < w && ny>=0 && ny < h){
+        newPxlData[(y*w + x)*4]     = pxlData[(ny*w + nx)*4];
+        newPxlData[(y*w + x)*4 + 1] = pxlData[(ny*w + nx)*4 + 1];
+        newPxlData[(y*w + x)*4 + 2] = pxlData[(ny*w + nx)*4 + 2];
+        newPxlData[(y*w + x)*4 + 3] = pxlData[(ny*w + nx)*4 + 3];
+      }
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+}
