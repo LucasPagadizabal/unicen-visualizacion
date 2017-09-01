@@ -5,18 +5,51 @@
     <title></title>
   </head>
   <body>
-      <canvas id="canvas"  width="900" height="900" style="border:#000 solid 1px;"></canvas>
+      <canvas id="canvas" width="900" height="900" style="border:#000 solid 1px;"></canvas>
   </body>
   <script>
+  function clear() {
+
+
   //w3school
     // var canvas = document.getElementById('canvas');
     var ctx = document.getElementById("canvas").getContext("2d");
 
+    // document.getElementById("canvas").onmousedown = function (event) {
+    //   circle.mousedown(event);
+    // }
+
+
+
+    document.getElementById("canvas").onmousemove = function () {
+      document.getElementById("canvas").onmouseup = function (event) {
+        if(circle.clickMe(event)){
+
+          clear();
+        }
+      }
+    }
+
     function Circle() {
       this.posX = 20;
       this.posY = 20;
-      this.radio = 10;
+      this.radio = 60;
       this.color = 'red';
+    }
+
+    Circle.prototype.mousedown = function (event) {
+      if (dentroSuperficie(event,this) <= this.radio) {
+        this.color = getRandomColor();
+        this.draw();
+      }
+    }
+
+    Circle.prototype.clickMe = function functionName(event) {
+        return (this.radio>= Math.sqrt(Math.pow((event.clientX - this.posX),2)+Math.pow((event.clientY - this.posY),2)));
+    }
+
+    function dentroSuperficie(event,circle) {
+      return Math.sqrt(Math.pow((event.clientX - circle.posX),2)+Math.pow((event.clientY - circle.posY),2));
     }
 
     function Circle(posX,posY,radio,color) {
@@ -37,6 +70,11 @@
         ctx.fill();
         ctx.closePath();
       }
+
+      Circle.prototype.selectThis = function () {
+        this.color = getRandomColor();
+      }
+
 
     function Rectangulo(posX,posY,ladoA,ladoB,color) {
       this.posX = posX;
@@ -60,10 +98,10 @@
 
     }
 
-    // var circle = new Circle(Math.random()*500,Math.random()*500,100,getRandomColor());
-    // circle.draw();
+    var circle = new Circle(Math.random()*500,Math.random()*500,100,getRandomColor());
+    circle.draw();
     //
-    var rect = new Rectangulo(Math.random()*500,Math.random()*500,Math.random()*500,Math.random()*500,getRandomColor());
+    // var rect = new Rectangulo(Math.random()*500,Math.random()*500,Math.random()*500,Math.random()*500,getRandomColor());
     //rect.draw();
 
 
@@ -75,15 +113,15 @@
     // ctx.fillStyle = gradiente;
     // ctx.fillRect(10,10, 200,200);
 
-    var img = new Image();
-    img.src="gatos.jpg";
-    img.onload = function () {
-      var imagen = ctx.createPattern(img,'repeat');
-        rect.setImg(imagen);
-      // ctx.rect(0,0,540,340);
-      // ctx.fillStyle = imagen;
-      // ctx.fill();
-    }
+    // var img = new Image();
+    // img.src="gatos.jpg";
+    // img.onload = function () {
+    //   var imagen = ctx.createPattern(img,'repeat');
+    //     rect.setImg(imagen);
+    //   // ctx.rect(0,0,540,340);
+    //   // ctx.fillStyle = imagen;
+    //   // ctx.fill();
+    // }
 
 
 
@@ -94,6 +132,7 @@
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
 }
   </script>
 </html>
