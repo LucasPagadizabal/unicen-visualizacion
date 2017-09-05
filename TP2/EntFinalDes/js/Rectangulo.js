@@ -21,8 +21,11 @@ class Rectangulo {
     ctx.closePath();
   }
 
-  selectThis(event,canvas){
-    return  (this.x < event.clientX - canvas.offsetLeft) && (this.a + this.x > event.clientX - canvas.offsetLeft) && (this.y < event.clientY - canvas.offsetTop) && (this.b + this.y > event.clientY-canvas.offsetTop);
+  selectThis(event){
+    var rect = canvas.getBoundingClientRect();
+    var dx =   event.clientX - rect.left;
+    var dy =   event.clientY - rect.top;
+    return  (this.x < dx) && (this.a + this.x > dx) && (this.y < dy) && (this.b + this.y > dy);
   }
 
   equals(figura){

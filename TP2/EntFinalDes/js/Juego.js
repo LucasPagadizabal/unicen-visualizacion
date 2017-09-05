@@ -1,12 +1,13 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext("2d");
 
-var circuloMove = new Circulo(100,100,25,"Gray",false);
-var circulo = new Circulo(100,175,25,"Black",true);
-var rectanguloMov = new Rectangulo(150,75,70,50,'Gray',false);
-var rectangulo = new Rectangulo(150,150,70,50,'Black',true);
-var cuadradoMov = new Cuadrado(250,75,50,'Gray',false);
-var cuadrado =  new Cuadrado(250,150,50,'Black',true);
+var circulo = new Circulo(725,75,50,"Gray",false);
+var rectangulo = new Rectangulo(665,155,115,75,'Gray',false);
+var cuadrado =  new Cuadrado(675,265,95,'Gray',false);
+
+var circuloMove = new Circulo(100,215,50,"Black",true);
+var rectanguloMov = new Rectangulo(200,180,120,75,'Black',true);
+var cuadradoMov = new Cuadrado(400,170,100,'Black',true);
 
 // var imgTriangulo = new Image();
 // imgTriangulo.src = "images/trian.png"
@@ -15,10 +16,10 @@ var cuadrado =  new Cuadrado(250,150,50,'Black',true);
 
 var objetos = [];
 var objectoSelect = null;
-objetos.push(circuloMove,circulo,rectanguloMov,rectangulo,cuadrado,cuadradoMov);//trianguloMov
+objetos.push(cuadrado,circulo,rectangulo,circuloMove,cuadradoMov,rectanguloMov);
 
 function actualizar() {
-  ctx.fillStyle = "#f0f0f0";
+  ctx.fillStyle = "#e7af34";
   ctx.fillRect(0,0,canvas.width,canvas.height)
   for (var i = 0; i < objetos.length; i++) {
     objetos[i].draw(ctx);
@@ -48,8 +49,13 @@ canvas.onmousemove = function (event) {
 canvas.onmouseup = function (event) {
   for (var i = 0; i < objetos.length; i++) {
     if(objetos[i].selectThis(event,canvas) && !objetos[i].estado && objetos[i].equals(objectoSelect)){
-      //Misma figura
-      console.log("mismafigura");
+      objectoSelect.x = objetos[i].x;
+      objectoSelect.y = objetos[i].y;
+      objectoSelect.estado = !objectoSelect.estado;
+      actualizar();
+      if(control()){
+        win();
+      }
       break;
     }else {
       //Figura distinta
@@ -57,4 +63,13 @@ canvas.onmouseup = function (event) {
     }
   }
   objectoSelect = null;
+}
+
+function control() {
+  for (var i = 0; i < objetos.length; i++) {
+    if(objetos[i].estado){
+      return false;
+    }
+  }
+  return true;
 }

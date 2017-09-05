@@ -18,8 +18,12 @@ class Cuadrado {
     ctx.closePath();
   }
 
-  selectThis(){
-    return  (this.x < event.clientX - canvas.offsetLeft) && (this.lado + this.x > event.clientX - canvas.offsetLeft) && (this.y < event.clientY - canvas.offsetTop) && (this.lado + this.y > event.clientY-canvas.offsetTop);
+  selectThis(event){
+    var rect = canvas.getBoundingClientRect();
+    var dx =   event.clientX - rect.left;
+    var dy =   event.clientY - rect.top;
+
+    return  (this.x <dx) && (this.lado + this.x > dx) && (this.y < dy) && (this.lado + this.y > dy);
   }
 
   equals(figura){
