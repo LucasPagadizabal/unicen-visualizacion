@@ -1,4 +1,4 @@
-class Poligono {
+class Pentagono {
   constructor(x,y,size,color,estado) {
     this.inicioX = 0;
     this.inicioY = 0;

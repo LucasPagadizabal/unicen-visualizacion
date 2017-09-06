@@ -9,11 +9,11 @@ var circuloMove = new Circulo(100,215,50,"Black",true);
 var rectanguloMov = new Rectangulo(200,180,120,75,'Black',true);
 var cuadradoMov = new Cuadrado(400,170,100,'Black',true);
 var triangulo = new Triangulo(200, 100, 100, 'Black' ,true);//new Punto(0, 100)
-var poli = new Poligono(100,100,50,'Red',true);
+var pen = new Pentagono(100,100,50,'Red',true);
 
 var objetos = [];
 var objectoSelect = null;
-objetos.push(cuadrado,circulo,rectangulo,circuloMove,cuadradoMov,rectanguloMov,triangulo,poli);
+objetos.push(cuadrado,circulo,rectangulo,circuloMove,cuadradoMov,rectanguloMov,triangulo,pen);
 
 function actualizar() {
   ctx.fillStyle = "#e7af34";
