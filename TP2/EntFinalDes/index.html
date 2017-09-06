@@ -14,19 +14,12 @@
       </div>
 
       <div class="row"  style="margin-top:20px;">
-        <div class="col-md-6 text-center">
+        <div class="col-md-8 text-center">
           <canvas id="canvas" width="800" height="400" style="border:#000 solid 1px;"></canvas><!--border:#000 solid 1px;-->
         </div>
 
-        <div class="col-md-3 col-md-offset-3 botonera">
-          <div class="col-md-12">
-            <select class="form-control" name="" style="margin-top:20px;">
-              <option value="">Principiante</option>
-              <option value="">Regular</option>
-              <option value="">Dificil</option>
-            </select>
-          </div>
-<!--  -->
+        <div class="col-md-3 col-md-offset-1 botonera" id="">
+
           <div id="timer" class="col-md-12">
                 <div class="container">
                     <div id="hour">00</div>
@@ -36,19 +29,26 @@
                     <div id="second">00</div>
             </div>
           </div>
-          <!--  -->
-          <div class="col-md-12"><button onclick="iniciar();" class="btn btn-primary col-md-12" type="button" name="button" style="margin-top:20px;">Jugar</button> </div>
+          <div class="col-md-12" style="margin-top:60px;">
+            <select class="form-control" name="" style="margin-top:20px;">
+              <option value="">Principiante</option>
+              <option value="">Regular</option>
+              <option value="">Dificil</option>
+            </select>
+          </div>
+          <div class="col-md-12" style="margin-top:100px;"><button onclick="iniciar();" class="btn btn-primary col-md-12" type="button" name="button">Jugar</button> </div>
         </div>
       </div>
 
 
   </div><!--container  -->
   </body>
+  <script src="js/Figuras/Triangulo.js"></script>
+  <script src="js/Figuras/Cuadrado.js"></script>
+  <script src="js/Figuras/Circulo.js"></script>
+  <script src="js/Figuras/Rectangulo.js"></script>
+  <script src="js/Figuras/Poligono.js"></script>
   <script src="js/cronometro.js">  </script>
-  <script src="js/Triangulo.js"></script>
-  <script src="js/Cuadrado.js"></script>
-  <script src="js/Circulo.js"></script>
-  <script src="js/Rectangulo.js"></script>
   <script src="js/Juego.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
