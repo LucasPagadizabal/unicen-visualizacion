@@ -8,6 +8,7 @@ class Pentagono {
     this.puntos = [];
     this.color = color;
     this.estado = estado;
+    this.tipo = 4;
   }
 
   addPunto(punto){
@@ -53,5 +54,9 @@ class Pentagono {
       }
     }
     return dentro;
+  }
+
+  equals(figura){
+    return this.tipo == figura.tipo;
   }
 }

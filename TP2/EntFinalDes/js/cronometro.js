@@ -5,7 +5,7 @@
     };
 
     var tiempo_corriendo = null;
-    function iniciar() {
+    function run() {
           tiempo_corriendo = setInterval(function(){
               // Segundos
               tiempo.segundo++;
@@ -28,6 +28,6 @@
           }, 10);
       }
 
-    function win() {
+    function stop() {
           clearInterval(tiempo_corriendo);
       }

@@ -12,10 +12,15 @@ class Cuadrado {
   }
 
   draw(ctx){
+    ctx.fillStyle='#000';
+    ctx.fillRect(this.x - (1), this.y - (1), this.lado + (1 * 2), this.lado + (1 * 2));
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.fillRect(this.x,this.y,this.lado,this.lado);
+    ctx.stroke();
     ctx.closePath();
+
+
   }
 
   selectThis(event){

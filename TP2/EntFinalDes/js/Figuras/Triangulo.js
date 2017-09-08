@@ -15,6 +15,7 @@ class Triangulo {
     this.puntos = [];
     this.color = color;
     this.estado = estado;
+    this.tipo = 5;
   }
 
   addPunto(punto){
@@ -57,5 +58,9 @@ class Triangulo {
       }
     }
     return dentro;
+  }
+
+  equals(figura){
+    return this.tipo == figura.tipo;
   }
 }

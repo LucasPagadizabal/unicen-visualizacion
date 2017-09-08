@@ -15,9 +15,13 @@ class Rectangulo {
   }
 
   draw(){
+    ctx.fillStyle='#000';
+    ctx.fillRect(this.x - (1), this.y - (1), this.a + (1 * 2), this.b + (1 * 2));
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.fillRect(this.x,this.y,this.a,this.b);
+    ctx.fill();
+    ctx.stroke();
     ctx.closePath();
   }
 

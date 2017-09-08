@@ -1,11 +1,13 @@
   #canvas , .botonera{
     box-shadow: 2px 2px 30px #0f0f0f;
     background-size:100% auto;
+    border:#000 solid 1px;
   }
 
-  h1{
+  h1,label{
     font-family: 'Baloo Tammudu',cursive;
   }
+
 
   body{
     background-color:  #e7af34;
