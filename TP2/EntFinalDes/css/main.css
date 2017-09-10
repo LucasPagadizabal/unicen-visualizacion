@@ -4,6 +4,7 @@
     border:#000 solid 1px;
   }
 
+
   h1,label{
     font-family: 'Baloo Tammudu',cursive;
   }
@@ -23,5 +24,9 @@
 
 .botonera{
   background-color: #e7af34;
-  padding-bottom: 60px;
+  padding-bottom: 0px;
+  height: 350px;
+}
+#btn-jugar{
+  margin-top:35px;
 }

@@ -13,7 +13,7 @@ class Tablero {
     var c4 = new Circulo(235,435,50,"Gray",false,null);//fila 3
     var c3 = new Circulo(495,320,50,"Gray",false,null);//fila 4
 
-    var t1 = new Triangulo(195,130,95,'Gray',false,null);//fila 1
+    var t1 = new Triangulo(195,120,95,'Gray',false,null);//fila 1
     var t2 = new Triangulo(446, 240, 95, 'Gray' ,false,null);//fila 2
     var t3 = new Triangulo(580,480,95,'Gray',false,null);//fila 4
 
@@ -26,7 +26,7 @@ class Tablero {
 
 
     var p1 = new Pentagono(473,30,50,'Gray',false,null);//fila 1
-    var p2 = new Pentagono(214,151,50,'Gray',false,null);//fila 2
+    var p2 = new Pentagono(214,145,50,'Gray',false,null);//fila 2
     var p3 = new Pentagono(600,266,50,'Gray',false,null);//fila 3
     var p4 = new Pentagono(342,385,50,'Gray',false,null);//fila 4
 
@@ -40,7 +40,7 @@ class Tablero {
 
     var r1M = new Rectangulo(17,5,120,80,"rgba(246,199,153,1)",false,imagenes[2]);
     var r2M = new Rectangulo(17,5,120,80,"rgba(246,199,153,1)",false,imagenes[2]);
-    var r3M = new Rectangulo(17,5,120,80,"Yellow",false,imagenes[2]);
+    var r3M = new Rectangulo(17,5,120,80,"rgba(246,199,153,1)",false,imagenes[2]);
 
 
     var cuad1M = new Cuadrado(21,310,100,"rgba(246,199,153,1)",false,imagenes[1]);
@@ -73,15 +73,6 @@ class Tablero {
     for (var i = 0; i < this.figuras.length; i++) {
       this.figuras[i].draw(ctx)
     }
-  }
-
-  getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
   }
 
   setMov(){

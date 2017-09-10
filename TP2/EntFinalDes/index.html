@@ -7,13 +7,12 @@
     <title></title>
   </head>
   <body>
-
     <div class="container">
       <div class="row">
         <div class="col-md-3 text-center"><h1>Puzzle Infantil</h1></div>
       </div>
 
-      <div class="row"  style="margin-top:20px;">
+      <div class="row"  style="margin-top:10px;">
         <div class="col-md-8 text-center">
           <canvas id="canvas" width="700" height="520"></canvas><!--border:#000 solid 1px;-->
         </div>
@@ -34,7 +33,7 @@
 
           <div class="col-md-12">
 
-          <div class="btn-group-vertical col-md-6 col-md-offset-3" style="margin-top:30px;" role="group">
+          <div class="btn-group-vertical col-md-6 col-md-offset-3" role="group">
             <label>Dificultad</label>
               <div class="btn-group" role="group">
                   <button type="button" class="btn btn-default" onclick="tablero.draw(FACIL);">Facil</button>
@@ -47,7 +46,7 @@
             </div>
           </div>
 
-          <div class="col-md-12" style="margin-top:100px;"><button onclick="jugar();" class="btn btn-primary col-md-12" type="button" name="button">Jugar</button> </div>
+          <div id="btn-jugar" class="col-md-12"><button onclick="jugar();" class="btn btn-primary col-md-12" type="button" name="button">Jugar</button> </div>
         </div>
       </div>
 
