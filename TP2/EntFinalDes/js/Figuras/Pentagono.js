@@ -1,5 +1,5 @@
 class Pentagono {
-  constructor(x,y,size,color,estado) {
+  constructor(x,y,size,color,estado,imagen) {
     this.inicioX = 0;
     this.inicioY = 0;
     this.x = x;
@@ -9,6 +9,13 @@ class Pentagono {
     this.color = color;
     this.estado = estado;
     this.tipo = 4;
+    this.initX = x;
+    this.initY = y;
+    this.imagen = imagen;
+  }
+  setPosInicial(){
+    this.x=this.initX;
+    this.y=this.initY;
   }
 
   addPunto(punto){
@@ -23,7 +30,7 @@ class Pentagono {
   draw(ctx){
     var width = this.size * 0.1;
     this.puntos = [];
-    ctx.fillStyle = this.color;
+    // ctx.fillStyle = this.color;
     ctx.beginPath();
     this.addPunto(new Punto(this.x, this.y));
     this.addPunto(new Punto(this.x + this.size, this.y));
@@ -33,6 +40,10 @@ class Pentagono {
     this.addPunto(new Punto(this.x - this.size / 2 - width, this.y + this.size ));
     ctx.closePath();
     ctx.fill();
+    if(this.imagen != null){
+        ctx.fillStyle ="rgba(246,199,153,1)";
+      ctx.drawImage(this.imagen, this.x, this.y+15, this.size , this.size+25);
+    }
     ctx.stroke();
   }
 

@@ -4,11 +4,9 @@ const FACIL = 8;
 const MEDIO = 12;
 const DIFICIL = 16;
 
-let tablero = new Tablero();
+var tablero = new Tablero();
+var objectoSelect = null;
 
-tablero.cargar();
-let objectoSelect = null;
-tablero.draw(FACIL);
 
 function jugar() {
   run();
@@ -20,6 +18,8 @@ canvas.onmousedown = function (event) {
       tablero.figuras[i].inicioX = event.clientX - tablero.figuras[i].x;
       tablero.figuras[i].inicioY = event.clientY - tablero.figuras[i].y;
       objectoSelect = tablero.figuras[i];
+      tablero.figuras.splice(i,1);
+      tablero.figuras.push(objectoSelect);
       break;
     }
   }
@@ -48,8 +48,28 @@ canvas.onmouseup = function (event) {
       break;
     }else {
       //Figura distinta
-
+      objectoSelect.setPosInicial();
+      tablero.draw(tablero.dificultad);
     }
   }
   objectoSelect = null;
+}
+
+var imagenes = [];
+window.onload = function(){//esta funcion carga las imagenes para ser utilizadas por las figuras
+  var imagenesCargadas = 0;
+  var cantImagenes = 7;
+
+  for (var i = 1; i <= cantImagenes; i++) {
+    var imagen = new Image();
+    imagen.src = "images/" + i +".png";
+    imagen.onload = function () {
+      imagenes.push(this);
+      imagenesCargadas++;
+      if(imagenesCargadas == cantImagenes){
+        tablero.cargar();
+        tablero.draw(FACIL);
+      }
+    }
+  }
 }

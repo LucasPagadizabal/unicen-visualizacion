@@ -6,7 +6,7 @@ class Punto {
 }
 
 class Triangulo {
-  constructor(x, y, size,color,estado){
+  constructor(x, y, size,color,estado,imagen){
     this.inicioX = 0;
     this.inicioY = 0;
     this.x = x;
@@ -16,6 +16,13 @@ class Triangulo {
     this.color = color;
     this.estado = estado;
     this.tipo = 5;
+    this.initX = x;
+    this.initY = y;
+    this.imagen = imagen;
+  }
+  setPosInicial(){
+    this.x=this.initX;
+    this.y=this.initY;
   }
 
   addPunto(punto){
@@ -29,7 +36,6 @@ class Triangulo {
 
   draw(ctx){
     this.puntos = [];
-    ctx.fillStyle = this.color;
     ctx.beginPath();
     this.addPunto(new Punto(this.x, this.y));
     this.addPunto(new Punto(this.x + this.size, this.y));
@@ -37,7 +43,12 @@ class Triangulo {
     this.addPunto(new Punto(this.x, this.y));
     ctx.closePath();
     ctx.fill();
+    if(this.imagen!=null){
+      ctx.fillStyle ="rgba(246,199,153,1)";
+       ctx.drawImage(this.imagen, this.x +23, this.y - 60 + 10, 50  , 50);
+    }
     ctx.stroke();
+    ctx.restore();
   }
 
   getMousePosition(e){

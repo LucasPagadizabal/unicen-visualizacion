@@ -1,6 +1,6 @@
 class Rectangulo {
 
-  constructor(x,y,a,b,color,estado) {
+  constructor(x,y,a,b,color,estado,imagen) {
     if(a<b || b<a){
       this.inicioX = 0;
       this.inicioY = 0;
@@ -11,7 +11,14 @@ class Rectangulo {
       this.a = a;
       this.b = b;
       this.color = color;
+      this.initX = x;
+      this.initY = y;
+      this.imagen = imagen
     }
+  }
+  setPosInicial(){
+    this.x=this.initX;
+    this.y=this.initY;
   }
 
   draw(){
@@ -21,6 +28,9 @@ class Rectangulo {
     ctx.beginPath();
     ctx.fillRect(this.x,this.y,this.a,this.b);
     ctx.fill();
+    if(this.imagen!=null){
+        ctx.drawImage(this.imagen, this.x, this.y, this.a , this.b);
+    }
     ctx.stroke();
     ctx.closePath();
   }

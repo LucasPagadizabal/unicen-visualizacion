@@ -1,6 +1,6 @@
 class Cuadrado {
 
-  constructor(x,y,lado,color,estado) {
+  constructor(x,y,lado,color,estado,imagen) {
     this.inicioX = 0;
     this.inicioY = 0;
     this.tipo = 2;
@@ -9,6 +9,13 @@ class Cuadrado {
     this.y = y;
     this.lado = lado;
     this.color = color;
+    this.initX = x;
+    this.initY = y;
+    this.imagen = imagen;
+  }
+  setPosInicial(){
+    this.x=this.initX;
+    this.y=this.initY;
   }
 
   draw(ctx){
@@ -20,6 +27,9 @@ class Cuadrado {
     ctx.stroke();
     ctx.closePath();
 
+    if(this.imagen !=null){
+      ctx.drawImage(this.imagen, this.x, this.y, this.lado , this.lado);
+    }
 
   }
 
