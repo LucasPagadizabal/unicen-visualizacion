@@ -27,7 +27,7 @@ class Pentagono {
     this.puntos.push(punto);
   }
 
-  draw(ctx){
+  draw(){
     var width = this.size * 0.1;
     this.puntos = [];
     // ctx.fillStyle = this.color;

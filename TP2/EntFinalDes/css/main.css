@@ -25,8 +25,8 @@
 .botonera{
   background-color: #e7af34;
   padding-bottom: 0px;
-  height: 350px;
+  height: 360px;
 }
-#btn-jugar{
+#btn-jugar,#btn-restablecer{
   margin-top:35px;
 }

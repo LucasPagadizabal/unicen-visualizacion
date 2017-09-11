@@ -31,3 +31,13 @@
     function stop() {
           clearInterval(tiempo_corriendo);
       }
+
+    function clearTime() {
+      tiempo_corriendo = null;
+      $("#hour").text('00');
+      $("#minute").text('00');
+      $("#second").text('00');
+      tiempo.hora = 0;
+      tiempo.minuto = 0;
+      tiempo.segundo = 0;
+    }

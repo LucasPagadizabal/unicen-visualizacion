@@ -34,7 +34,7 @@ class Triangulo {
     this.puntos.push(punto);
   }
 
-  draw(ctx){
+  draw(){
     this.puntos = [];
     ctx.beginPath();
     this.addPunto(new Punto(this.x, this.y));

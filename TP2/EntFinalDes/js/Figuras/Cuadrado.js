@@ -18,7 +18,7 @@ class Cuadrado {
     this.y=this.initY;
   }
 
-  draw(ctx){
+  draw(){
     ctx.fillStyle='#000';
     ctx.fillRect(this.x - (1), this.y - (1), this.lado + (1 * 2), this.lado + (1 * 2));
     ctx.fillStyle = this.color;

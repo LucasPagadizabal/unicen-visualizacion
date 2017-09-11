@@ -15,18 +15,18 @@ class Circulo {
     this.imagen = imagen;
   }
 
-  draw(cv) {
-    cv.fillStyle = this.color;
-     cv.save();
-    cv.beginPath();
-    cv.arc(this.x,this.y,this.radio,0,Math.PI*2,0);
-    cv.fill();
-    cv.stroke();
-    cv.closePath();
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.radio,0,Math.PI*2,0);
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
 
   if(this.imagen != null){
-    cv.clip();
-    cv.drawImage(this.imagen, this.x - this.radio, this.y- this.radio, this.radio * 2 , this.radio * 2);
+    ctx.clip();
+    ctx.drawImage(this.imagen, this.x - this.radio, this.y- this.radio, this.radio * 2 , this.radio * 2);
     }
     ctx.stroke();
     ctx.restore();
