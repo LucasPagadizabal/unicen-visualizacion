@@ -1,0 +1,32 @@
+  #canvas , .botonera{
+    box-shadow: 2px 2px 30px #0f0f0f;
+    background-size:100% auto;
+    border:#000 solid 1px;
+  }
+
+
+  h1,label{
+    font-family: 'Baloo Tammudu',cursive;
+  }
+
+
+  body{
+    background-color:  #e7af34;
+    background-image: url('../images/-desert.jpg');
+    background-repeat: no-repeat;
+     background-position: center;
+  }
+
+  #timer{margin:30px 20px 20px 20px;width:40px;}
+  #timer .container{display:table;background:#777;color:#eee;font-weight:bold;width:100%;text-align:center;text-shadow:1px 1px 4px #999;}
+  #timer .container div{display:table-cell;font-size:15px;padding:10px;width:10px;}
+  #timer .container .divider{width:10px;color:#ddd;}
+
+.botonera{
+  background-color: #e7af34;
+  padding-bottom: 0px;
+  height: 360px;
+}
+#btn-jugar,#btn-restablecer{
+  margin-top:35px;
+}
