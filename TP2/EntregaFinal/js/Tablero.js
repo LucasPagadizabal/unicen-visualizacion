@@ -5,6 +5,7 @@ class Tablero {
     this.dificultad = FACIL;
     this.encastrados = 0;
     this.encastresCompletos = [];
+    this.cirRestart = new Circulo(400,280,35,null,null,imgRestart);
   }
 
 
@@ -101,7 +102,10 @@ class Tablero {
     ctx.font = "bold 24px verdana";
     ctx.fillStyle = "rgba(198,118,19,1)";
     ctx.textAlign = "start";
-    ctx.fillText("Ganaste!!! Has tardado: " +h + ":" + m+":"+ s+"",200,300);
+    ctx.fillText("Ganaste!!! Has tardado: " +h + ":" + m+":"+ s+"",200,200);
+    this.cirRestart.draw();
+    ctx.stroke();
+    ctx.restore();
   }
 
   setMov(){

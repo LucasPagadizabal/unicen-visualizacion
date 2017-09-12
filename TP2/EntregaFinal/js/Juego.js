@@ -35,6 +35,15 @@ canvas.onmousedown = function (event) {
       tablero.figuras.push(objectoSelect);//paso la figura seleccionada a la ultima posicion asi no se superpone con otras figuras
       break;
     }
+    if(tablero.cirRestart.selectThis(event,canvas)){//restart al juego
+      $("#btn-jugar").prop("disabled",false);
+      $("#dificultadFacil").prop("disabled",false);
+      $("#dificultadMedio").prop("disabled",false);
+      $("#dificultadDificil").prop("disabled",false);
+      stop();
+      clearTime();
+      loadPage();
+    }
   }
 }
 
@@ -71,19 +80,10 @@ canvas.onmouseup = function (event) {
   objectoSelect = null;
 }
 
-$("#btn-restablecer").click(function () {//restablecer el juego
-  $("#btn-jugar").prop("disabled",false);
-  $("#dificultadFacil").prop("disabled",false);
-  $("#dificultadMedio").prop("disabled",false);
-  $("#dificultadDificil").prop("disabled",false);
-  stop();
-  clearTime();
-  loadPage();
-});
-
+var imgRestart = new Image();
 var imagenes = [];
 window.onload = function(){//esta funcion carga las imagenes para ser utilizadas por las figuras
-
+  imgRestart.src = "images/restart.jpg";
   var imagenesCargadas = 0;
   var cantImagenes = 5;
 
