@@ -40,11 +40,11 @@ class Tablero {
     }
 
     //figuras Movibles
-    var c1M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[0]);
-    var c2M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[0]);
-    var c3M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[0]);
-    var c4M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[0]);
-    var c5M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[0]);
+    var c1M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[4]);
+    var c2M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[4]);
+    var c3M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[4]);
+    var c4M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[4]);
+    var c5M = new Circulo(73,250,50,"rgba(246,199,153,1)",false,imagenes[4]);
 
 
     var r1M = new Rectangulo(17,5,120,80,"rgba(246,199,153,1)",false,imagenes[2]);
@@ -58,10 +58,10 @@ class Tablero {
     var cuad3M = new Cuadrado(21,310,100,"rgba(246,199,153,1)",false,imagenes[1]);
 
 
-    var t1M = new Triangulo(23, 510, 95,"rgba(246,199,153,01",false,imagenes[4]);
-    var t2M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[4]);
-    var t3M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[4]);
-    var t4M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[4]);
+    var t1M = new Triangulo(23, 510, 95,"rgba(246,199,153,01",false,imagenes[0]);
+    var t2M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[0]);
+    var t3M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[0]);
+    var t4M = new Triangulo(23, 510, 95,"rgba(246,199,153,1)",false,imagenes[0]);
 
 
     var p4M = new Pentagono(47,92,50,"rgba(246,199,153,1)",false,imagenes[3]);
@@ -102,7 +102,8 @@ class Tablero {
     ctx.font = "bold 24px verdana";
     ctx.fillStyle = "rgba(198,118,19,1)";
     ctx.textAlign = "start";
-    ctx.fillText("Ganaste!!! Has tardado: " +h + ":" + m+":"+ s+"",200,200);
+    ctx.fillText("Ganaste!!!",330,150);
+    ctx.fillText("Has tardado: " +h + ":" + m+":"+ s+"",250,200);
     this.cirRestart.draw();
     ctx.stroke();
     ctx.restore();
