@@ -1,0 +1,31 @@
+#hora, #min, #segundo{
+    position: fixed;
+    width: 200px;
+    height: 200px;
+}
+
+#fondo{
+    position: fixed;
+    width: 200px;
+    height: 200px;
+}
+@keyframes rotacion {
+    from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(395deg);
+      }
+}
+
+#hora{
+    animation: rotacion 360s infinite steps(60);
+}
+#min{
+    animation: rotacion 10s  infinite steps(60);
+}
+
+#seg{
+    animation: rotacion 1s infinite steps(60);
+
+}

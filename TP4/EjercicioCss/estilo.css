@@ -1,0 +1,117 @@
+body{
+    background-color: #878889;
+}
+
+header{
+
+}
+
+.top-navbar{
+    position: relative;
+    left: 1100px;
+}
+
+.top-navbar li{
+    float: left;
+    margin-left: 20px;
+}
+
+.top-navbar a{
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
+}
+
+.logo{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.logo img{
+    position:absolute;
+    top: 30px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+h1 {
+    position: relative;
+    top: 50px;
+}
+
+.main-navbar{
+    position: relative;
+    top: 50px;
+    left: 900px;
+}
+
+.main-navbar li{
+    float: left;
+    margin-left: 20px;
+}
+
+.main-navbar a{
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
+}
+
+#section-video{
+    position: relative;
+    top: 90px;
+    background-color: white;
+    height: 470px;
+    
+}
+
+#section-video h2{
+    position: relative;
+    top: 20px;
+    right: 390px;
+}
+
+#section-video video{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    
+}
+
+.slider-text{
+    position: relative;
+    width: 300px;
+    height: 230px;
+    left: 800px;
+    bottom: 300px;
+    background-color:gray;
+}
+
+
+/*seccion de info */
+
+#section-info{
+    position: relative;
+    top: 100px;
+}
+
+#section-info li{
+    width: 400px;
+    float: left;
+    margin-left:20px; 
+}
+
+
+
+/* section-form */
+
+#section-form{
+    position: relative;
+    top:150px;
+}
+
+footer{
+    position: relative;
+    top: 200px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <title></title>
+</head>
+<body>
+    <header>
+            <div id="contenedor">
+                    <!-- <div class="reloj" id="Horas">00</div> -->
+                    <div class="reloj" id="Minutos">00</div>
+                    <div class="reloj" id="Segundos">:00</div>
+                    <div class="reloj" id="Centesimas">:00</div>
+                    <div id="points" class="reloj">
+                        <div id="coinAnimPoints"></div>
+                        <p id="coinPoints">00</p>
+                    </div>   
+                    <img id="audio" src="images/audioOn.png" alt="">
+                </div>
+           
+    </header>
+    
+    <div id="layercielo" class="layers"></div>
+    <div id="layertierra" class="layers"></div>
+    <div id="layerpiso" class="layers"></div>
+    <div id="runner" class="idle"></div>
+    <div id="enemy" class="walkEnemy"></div>
+    <div id="coin1" class="coins"></div>
+    <div id="coin2" class="coins"></div>
+    <div id="coin3" class="coins"></div>
+    <div id="coin4" class="coins"></div>
+    <audio hidden id="audioBack" src="sound/back.wav"></audio>
+    <audio hidden id="audioCoin" src="sound/coin.mp3"></audio>
+    <audio hidden id="audioGameOver" src="sound/gameover.wav"></audio>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+<script src="js/cronometro.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/Game.js"></script>
+<script src="js/modal.js"></script>
+</html>

@@ -1,0 +1,28 @@
+.trans{
+    width: 300px;
+    height: 200px;
+    background: yellow;
+}
+
+.ej2{
+    width: 300px;
+    height: 200px;
+    background: red;
+    position: relative;
+    transition: width 2s;
+    /* animation: example 4s infinite; */
+}
+
+.ej2:hover{
+    width: 500px;
+}
+
+/* .ej2:active{
+    width: 500px;
+} */
+
+/* @keyframes example{
+    from {top: 0px;}
+    to {top: 200px;}
+} */
+
