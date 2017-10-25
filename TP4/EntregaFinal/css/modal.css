@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 .contenedorModal {
     z-index: 5;
     position: fixed;
@@ -10,6 +11,7 @@
 }
 
 .modal p{
+    font-family:shadows into light;
     position: relative;
     font-size:20px;
     text-align:center;
@@ -23,6 +25,7 @@
 
 .modal {
     background-color: #7A0000;
+    opacity: 0.9;
     border-radius: 4px;
     padding: 25px;
     margin: 10% auto;
