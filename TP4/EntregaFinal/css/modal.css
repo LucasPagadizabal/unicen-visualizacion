@@ -25,12 +25,13 @@
 
 .modal {
     background-color: #7A0000;
-    opacity: 0.9;
+    opacity: 0.8;
+    border: solid white 1px;
     border-radius: 4px;
     padding: 25px;
     margin: 10% auto;
     width: 50%;
-    height: 30%;
+    height: 32%;
 }
 
 .cerrar {
@@ -48,10 +49,21 @@
 }
 
 .tryAgain{
+    border: white solid 1px;
+    border-radius: 15px;
     float: left;
+    width: 150px;
+    height: 30px;
 }
 
 .backMenu{
+    border: white solid 1px;
+    border-radius: 15px;
     float: right;
-   
+    width: 150px;
+    height: 30px;
+}
+
+.tryAgain,.backMenu:hover{
+    cursor: pointer;
 }
