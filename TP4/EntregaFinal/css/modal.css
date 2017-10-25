@@ -64,6 +64,7 @@
     height: 30px;
 }
 
-.tryAgain,.backMenu:hover{
+.tryAgain:hover,.backMenu:hover{
     cursor: pointer;
+    opacity: 0.5;
 }
