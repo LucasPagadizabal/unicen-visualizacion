@@ -85,7 +85,7 @@ class Game{
     update(){
         if(arrows['ArrowRight']){
             this.coinUpdate(1.5);
-            this.enemyUpdate(5); 
+            this.enemyUpdate(4); 
         }else{
             this.enemyUpdate(2);
         }
@@ -130,7 +130,7 @@ class Game{
         this.audioBack.pause();
 
         setTimeout(function () {
-            $('#game').css('filter','blur(6px)');
+            $('#game').css('filter','blur(2px)');
             let time = Minutos.innerHTML+Segundos.innerHTML+Centesimas.innerHTML;
             mostrarModal(totalCoins,time);
         },3000);
@@ -170,7 +170,6 @@ $("#audio").click(function(){
     if(game.player!=null){
         if(game.audioBack.paused){
             game.audioBack.play();
-            game.
             this.src ='images/audioOn.png';
         }else{
             game.audioBack.pause();
