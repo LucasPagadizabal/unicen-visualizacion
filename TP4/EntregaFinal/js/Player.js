@@ -19,12 +19,6 @@ class Player {
        this.divRunner.addEventListener("animationend",this.endJump);
     }
     
-    idle(){
-        this.state='none';
-        this.divRunner.className = '';
-        this.divRunner.className = 'idle';
-        this.divRunner.style.top = '500px';
-    }
     dead(){
         this.divRunner.className = '';
         this.divRunner.className = 'dead';
