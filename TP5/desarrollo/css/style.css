@@ -1,0 +1,176 @@
+html {
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+body {
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    height: 100%;
+}
+
+header{
+    opacity: 0.9;
+    background-color: #333;
+}
+
+#icon{
+    position: fixed;
+    top: 0%;
+    width: 50px;
+    height: 50px;
+}
+
+.search{
+    opacity: 0.9;
+    top: 25%;
+    position: relative;
+}
+
+/* Transicion buscador Up */
+.transform{
+    transition: all 2s ease;
+}
+
+.transform-active{
+    opacity: 1;
+    top: 0%;
+    position: relative;
+}
+/*  */
+
+#panel-search{ 
+    height: 85px;
+    transition: all 2s ease;
+}
+
+#search:hover{
+    opacity: 1;
+}
+
+#divSearch{
+    border-color: #333;
+    background-color: #333;
+}
+
+#footer{
+    position: absolute;
+    opacity: 0.9;
+    border-radius: 3px; 
+    background: #333;
+}
+
+#footer p{
+    margin-top: 15px;
+   /* border-top: 5px;  */
+    color: grey;
+}
+
+/* layout */
+#layout-grid{
+    border-radius: 40px;
+    position: absolute;
+    top:20%;
+    left: 80%;
+    border: solid black 1px;
+    width: 50px;
+    height: 50px;
+    transition: all 2s ease;
+}
+
+#layout-grid img{
+    position: relative;
+    top:20%;
+    /* border-radius: 40px; */
+    width: 30px;
+    height: 30px; 
+}
+#layout-grid:hover{
+    opacity: 0.5;
+    background-color: white ;
+}
+
+#layout-carrousel{
+    border-radius: 40px;
+    position: absolute;
+    top:20%;
+    left: 87%;
+    border: solid black 1px;
+    width: 50px;
+    height: 50px;
+    transition: all 2s ease;
+}
+
+#layout-carrousel img{
+    position: relative;
+    top:8%;
+    left: -4%;
+    /* border-radius: 40px; */
+    width: 40px;
+    height: 40px; 
+}
+#layout-carrousel:hover{
+    opacity: 0.5;
+    background-color: white ;
+}
+
+#layout-play{
+    border-radius: 40px;
+    position: absolute;
+    top:20%;
+    left: 94%;
+    border: solid black 1px;
+    width: 50px;
+    height: 50px;
+    transition: all 2s ease;
+}
+
+#layout-play img{
+    position: relative;
+    top:22%;
+    left: 6%;
+    /* border-radius: 40px; */
+    width: 25px;
+    height: 25px; 
+}
+#layout-play:hover{
+    opacity: 0.5;
+    background-color: white ;
+}
+
+/* end layout */
+
+/*  */
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+
+.carousel-inner>.item>{
+    width: 200px;
+    height: 200px;
+}
+
+#carrousel{
+    width: 100%;
+    margin-top: 20px;
+}
+
+#carrousel img{
+    width: 100%;
+    height: 470px;
+}
+
+#grilla img{
+    width: 230px;
+    height: 135px;
+}
