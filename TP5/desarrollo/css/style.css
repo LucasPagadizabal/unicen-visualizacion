@@ -178,68 +178,62 @@ header{
 new fullscreen
 */
 
-.fullscreen {
-    visibility: hidden;
-    top: -100%; 
+#section-fullscreen{
+    z-index: 6;
+    visibility: visible;
+    top: 0%;
+    background-color:rgba(51, 51, 51, 0.96);
+    position: fixed;
 }
 
-.fullscreenShow {
-    z-index: 5;
-    visibility: visible;
-    opacity: 1;
-    transition: all 2s; 
-    display: block;
+#btn-exitFullScreen{
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right;
+    font-size: 25px;
+    border-radius: 50px;
+    text-align: center;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+}
+
+#btn-exitFullScreen:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#containerImgFullScreen{
     position: fixed;
-    background: rgba(0,0,0,0.8);
-    top: 0;
-    left: 0;
+    top: 8%;
+    left: 4%;
+    z-index: 6;
+    visibility: visible;
+    background-color:red;
+    transition: all 2s;
+}
+
+#containerImgFullScreen img{
     width: 100%;
     height: 100%;
 }
 
-.fullscreen h3 {
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-    margin: 15px 0;
-}
-
-.imagen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.imagen a {
+#section-fullscreen p{
     color: #fff;
     font-size: 40px;
     text-decoration: none;
     margin: 0 10px;
 }
 
-.imagen a:nth-child(2) {
-    margin: 0;
-    height: 100%;
-    flex-shrink: 2;
+#prev{
+    position: fixed;
+    top: 50%;
 }
 
-.imagen img {
-    max-width: 100%;
-    border: 7px solid #fff;
-    box-sizing: border-box;
+#next{
+    right: -3%;
+    top: 50%;
+    position: relative;
+    float: right;
 }
 
-.cerrar {
-    display: block;
-    background: #fff;
-    width: 25px;
-    height: 25px;
-    margin: 15px auto;
-    text-align: center;
-    text-decoration: none;
-    font-size: 25px;
-    color: #000;
-    padding: 5px;
-    border-radius: 50%;
-    line-height: 25px;
-}
