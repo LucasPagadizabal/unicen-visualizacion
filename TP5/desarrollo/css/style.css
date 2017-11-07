@@ -210,7 +210,7 @@ new fullscreen
     z-index: 6;
     visibility: visible;
     background-color:red;
-    transition: all 2s;
+    transition: all 0.8s linear;
 }
 
 #containerImgFullScreen img{
