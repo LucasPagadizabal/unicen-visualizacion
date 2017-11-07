@@ -105,7 +105,9 @@ $("#section-fullscreen").css({'height' : $(window).height() , 'width': $(window)
 $("#containerImgFullScreen").css({'height' : $(window).height()-100 , 'width': $(window).width()-100});
 let layout = 'grid';
 $("#layout-play").click(function () {
+    $("#imgFullScreen").attr("src",tweets[0].img);
     $("#section-fullscreen").css({'visibility': 'visible'});
+    $("#containerImgFullScreen").css({'visibility': 'visible'});
     layout='fullscreen';
 });
 
@@ -126,7 +128,7 @@ $("#btn-exitFullScreen").click(function(){
 let animacion = false;
 $("#next").click(function () {
     if(!animacion){
-        let num = Math.floor((Math.random() * 3) + 1);
+        let num = Math.floor((Math.random() * 5) + 1);
         animaciones(num);  
     }  
 });
@@ -137,7 +139,7 @@ function animaciones(num) {
         case 1:
             $("#containerImgFullScreen").css({'top':'110%'});
             $("#containerImgFullScreen").bind("transitionend", function(){ 
-                $("#imgFullScreen").attr('src','https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg');
+                $("#imgFullScreen").attr('src',tweets[num].img);
                 $("#containerImgFullScreen").css({'top':'8%'}); 
                 animacion = false;
             });
@@ -146,24 +148,44 @@ function animaciones(num) {
         case 2:
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
-             $("#imgFullScreen").attr('src','https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg');
+             $("#imgFullScreen").attr('src',tweets[num].img);
              $("#containerImgFullScreen").css({'opacity':'1'}); 
+             animacion = false;
         });
             break;
 
         case 3:
         $("#containerImgFullScreen").css({'left':'110%'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
-            $("#imgFullScreen").attr('src','https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg');
+            $("#imgFullScreen").attr('src',tweets[num].img);
             $("#containerImgFullScreen").css({'left':'4%'}); 
+            animacion = false;
         });
             break;
-    
+
+        case 4:
+        $("#containerImgFullScreen").css({'width':'0%'});
+        $("#containerImgFullScreen").bind("transitionend", function(){ 
+            $("#imgFullScreen").attr('src',tweets[num].img);
+            $("#containerImgFullScreen").css({'width': $(window).width()-100});
+            animacion = false;
+        });
+            break;
+
+         case 5:
+        $("#containerImgFullScreen").css({'height':'0%'});
+        $("#containerImgFullScreen").bind("transitionend", function(){ 
+            $("#imgFullScreen").attr('src',tweets[num].img);
+            $("#containerImgFullScreen").css({'height': $(window).height()-100});
+            animacion = false;
+        });
+            break;
         default:
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
-             $("#imgFullScreen").attr('src','https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg');
+             $("#imgFullScreen").attr('src',tweets[num].img);
              $("#containerImgFullScreen").css({'opacity':'1'}); 
+             animacion = false;
         });
             break;
     }
