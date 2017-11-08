@@ -15,6 +15,7 @@
 
   </head>
   <body>
+    <div id="background-image"></div>
     <header class="">
         <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
@@ -45,6 +46,8 @@
                     <div id="layout-grid" class="text-center"  hidden><img src="img/icons/grid.png" alt=""></div>
                     <div id="layout-carrousel" class="text-center" hidden><img src="img/icons/carousel.png" alt=""></div>
                     <div id="layout-play" class="text-center" hidden><img src="img/icons/play.png" alt=""></div>
+                    <div class="loader" hidden></div>
+                    <div class="loaderFail" hidden><p>Sorry, the service is not available</p></div>
                 <!--  -->
                 <div id="panel-image" class="row" hidden>
                         <div id="grilla" class="col-sm-12" id="slider-thumbs">
@@ -193,6 +196,7 @@
         <div id="btn-exitFullScreen"><span>X</span></div>
         <div id="containerImgFullScreen">
             <img id="imgFullScreen" src="" alt="">
+            <div id="likes"><img src="img/heart.png" alt="" srcset=""></div>
         </div>
         <p id="next">></p>
     </section>
