@@ -169,12 +169,17 @@ header{
 
 #carrousel{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #carrousel img{
     width: 100%;
     height: 470px;
+}
+
+#grilla{
+    position: relative;
+    top: -10px;
 }
 
 #grilla img{
@@ -251,20 +256,27 @@ new fullscreen
     top: 80%;
     left: 80%;
     position: fixed;
-    width: 70px;
+    width: 150px;
     height: 70px;
     /* background-color: rgba(255, 0, 0, 0.548); */
     transition: all 1s;
 }
-
-/* #likes p{
+#likes img{
+    width: 50%;
+    height: 100%;
+}
+#likes p{
+    
+    top: 10%;
+    float: right;
+    /* position: relative; */
     margin: 0px;
-    width: 100%;
+    width: 50%;
     height: 100%;
     font-size: 35px;
     text-align: center;
-    color: black;
-} */
+    color: white;
+}
 
 
 /*loader*/
@@ -304,3 +316,34 @@ new fullscreen
       color: white;
       font-size: 20px;
   }
+
+  /*
+*************************
+  Pages About Contact
+*************************
+  */
+
+ #pages{
+    text-align: center;
+    border: #333 1px;
+    background-color: #333;
+    top: 15%;
+    position: relative;
+    height: 350px;
+}
+
+#pages h1,p,label{
+    color: white;
+}
+#pages p{
+    margin-top: 3%;
+    font-size: 20px;
+}
+
+label{
+    float: left;
+}
+
+#pages button{
+ float: right;
+}

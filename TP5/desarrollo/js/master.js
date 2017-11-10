@@ -3,6 +3,7 @@
 //***************************
 const TOTAL_GRID = 12;
 let cb = new Codebird;
+cb.setProxy("https://cb-proxy.herokuapp.com/");
 let contenedor = $('#contenedor');
 cb.setConsumerKey(key, keySecret);
 cb.setToken(token, tokenSecret);
@@ -17,38 +18,37 @@ function cargarTweets(hash){
         // result_type:'popular'
     }
    
-    cb.__call(
-        "search_tweets",
-        params,
-        function (reply) {
-            console.log(reply.httpstatus);
-            if(reply.httpstatus == 0){
-                //mostrar error
-                $(".loader").hide();
-                $(".loaderFail").show();
-            }else{
-                //mostrar grilla
-                $(".loader").hide();
-                $("#panel-image").show(2000);
-                tweets = [];
-                url_img = [];
-                for (var i = 0; i < reply.statuses.length; i++) {
-                    if(!reply.statuses[i].retweeted && reply.statuses[i].entities.media != undefined && indice<TOTAL_GRID){
+     cb.__call(
+         "search_tweets",
+         params,
+         function (reply) {
+             if(reply.httpstatus == 0){
+                 //mostrar error
+                 $(".loader").hide();
+                 $(".loaderFail").show();
+             }else{
+                 //mostrar grilla
+                 $(".loader").hide();
+                 $("#panel-image").show(2000);
+                 tweets = [];
+                 url_img = [];
+                 for (var i = 0; i < reply.statuses.length; i++) {
+                     if(!reply.statuses[i].retweeted && reply.statuses[i].entities.media != undefined && indice<TOTAL_GRID){
 
-                        if(!url_img.includes(reply.statuses[i].entities.media[0].media_url)){
-                            $("#carousel-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
-                            $("#gallery-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
-                            $("#fullscreen-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
-                            url_img.push(reply.statuses[i].entities.media[0].media_url);
-                            tweets.push({img: reply.statuses[i].entities.media[0].media_url,
-                                            like: reply.statuses[i].favorite_count});
-                            indice++
-                        }
-                    }  
-                }
-            }
-        }
-    );
+                         if(!url_img.includes(reply.statuses[i].entities.media[0].media_url)){
+                             $("#carousel-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
+                             $("#gallery-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
+                             $("#fullscreen-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
+                             url_img.push(reply.statuses[i].entities.media[0].media_url);
+                             tweets.push({img: reply.statuses[i].entities.media[0].media_url,
+                                             like: reply.statuses[i].favorite_count});
+                             indice++
+                         }
+                     }  
+                 }
+             }
+         }
+     );    
 }
 
 function cleanImages(){
@@ -67,7 +67,7 @@ $("#btn-search").click(function() {
 
     if(!search){
         $('.transform').toggleClass('transform-active');
-        $("#panel-search").height(560);
+        $("#panel-search").height(580);
         $("#layout-grid").css({top:'2%'})
         $("#layout-carrousel").css({top:'2%'})
         $("#layout-play").css({top:'2%'})
@@ -76,6 +76,7 @@ $("#btn-search").click(function() {
         $("#layout-grid").show(2000);
         $("#layout-carrousel").show(2000);
         $("#layout-play").show(2000);
+        $("hr").show();
         search = true;
     }
   });
@@ -118,6 +119,7 @@ $('#myCarousel').on('slid.bs.carousel', function (e) {
 
 // $("#likes").find("p").text('10');
 //**************** fullscreen */
+let nextFullScreen;
 $("#section-fullscreen").css({'height' : $(window).height() , 'width': $(window).width()});
 $("#containerImgFullScreen").css({'height' : $(window).height()-100 , 'width': $(window).width()-100});
 let layout = 'grid';
@@ -129,7 +131,7 @@ $("#layout-play").click(function () {
     $("#containerImgFullScreen").css({'visibility': 'visible'});
     $("#containerImgFullScreen").show();
     layout='fullscreen';
-    let nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
+    nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
 });
 
 
@@ -197,21 +199,29 @@ function animaciones(num,indice) {
             break;
 
         case 2:
+        $("#likes").css({'visibility': 'hidden'});
+        $("#likes").css({'top': '-100%'});
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
              $("#imgFullScreen").attr('src',tweets[indice].img);
              $("#likes").find("p").text(tweets[indice].like);
-             $("#containerImgFullScreen").css({'opacity':'1'}); 
+             $("#containerImgFullScreen").css({'opacity':'1'});
+             $("#likes").css({'visibility': 'visible'});
+             $("#likes").css({'top': '80%'});
              animacion = false;
         });
             break;
 
         case 3:
+        $("#likes").find('p').hide();
+        $("#likes").css({'width': '0px', 'height':'0px'});
         $("#containerImgFullScreen").css({'left':'110%'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
             $("#imgFullScreen").attr('src',tweets[indice].img);
             $("#likes").find("p").text(tweets[indice].like);
             $("#containerImgFullScreen").css({'left':'4%'}); 
+            $("#likes").css({'width': '150px', 'height':'70px'});
+            $("#likes").find('p').show(700);
             animacion = false;
         });
             break;
@@ -236,13 +246,20 @@ function animaciones(num,indice) {
         });
             break;
         default:
+        $("#likes").css({'visibility': 'hidden'});
+        $("#likes").css({'top': '-100%'});
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
              $("#imgFullScreen").attr('src',tweets[indice].img);
              $("#likes").find("p").text(tweets[indice].like);
-             $("#containerImgFullScreen").css({'opacity':'1'}); 
+             $("#containerImgFullScreen").css({'opacity':'1'});
+             $("#likes").css({'visibility': 'visible'});
+             $("#likes").css({'top': '80%'}); 
              animacion = false;
         });
             break;
     }
 }
+
+
+//pages
