@@ -101,15 +101,17 @@ $("#layout-carrousel").click(function () {
 })
 
 //Handles the carousel thumbnails
+//show fullscreen - click in grilla 
 $('[id^=carousel-selector-]').click(function () {
 var id_selector = $(this).attr("id");
-try {
 var id = /-(\d+)$/.exec(id_selector)[1];
-console.log(id_selector, id);
-jQuery('#myCarousel').carousel(parseInt(id));
-} catch (e) {
-console.log('Regex failed!', e);
-}
+$("#imgFullScreen").attr("src",tweets[id].img);
+$("#likes").find("p").text(tweets[id].like);
+$("#section-fullscreen").css({'visibility': 'visible'});
+$("#containerImgFullScreen").css({'visibility': 'visible'});
+$("#containerImgFullScreen").show();
+layout='fullscreen';
+nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
 });
 // When the carousel slides, auto update the text
 $('#myCarousel').on('slid.bs.carousel', function (e) {
@@ -117,7 +119,17 @@ $('#myCarousel').on('slid.bs.carousel', function (e) {
     $('#carousel-text').html($('#slide-content-'+id).html());
 });
 
-// $("#likes").find("p").text('10');
+//show fullscreen - click carrousel
+$('.item').click(function () {
+    let idImg = this.getAttribute('data-slide-number');
+    $("#imgFullScreen").attr("src",tweets[idImg].img);
+    $("#likes").find("p").text(tweets[idImg].like);
+    $("#section-fullscreen").css({'visibility': 'visible'});
+    $("#containerImgFullScreen").css({'visibility': 'visible'});
+    $("#containerImgFullScreen").show();
+    layout='fullscreen';
+    nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
+});
 //**************** fullscreen */
 let nextFullScreen;
 $("#section-fullscreen").css({'height' : $(window).height() , 'width': $(window).width()});
