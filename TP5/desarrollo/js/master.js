@@ -20,24 +20,32 @@ function cargarTweets(hash){
          "search_tweets",
          params,
          function (reply) {
-             if(reply.httpstatus == 0){
+             console.log(reply)
+             if(reply.httpstatus == 0){//no anda libreria
                  //mostrar error
                  $(".loader").hide();
+                 $(".loaderFail").find('p').text('Sorry, the service is not available');
                  $(".loaderFail").show();
-             }else{
+            }else if(reply.statuses.length == 0){//no hay imagenes
+                $(".loader").hide();
+                $(".loaderFail").find('p').text('Sorry, no images found');
+                $(".loaderFail").show();
+            }else{
                  //mostrar grilla
                  $('#ul-grilla').empty();
                  tweets = [];
                  url_img = [];
                  for (var i = 0; i < reply.statuses.length; i++) {
-                     if(!reply.statuses[i].retweeted && reply.statuses[i].entities.media != undefined ){//&& indice<TOTAL_GRID
+                    // console.log(reply.statuses[i])
+                     if(!reply.statuses[i].retweeted && reply.statuses[i].entities.media != undefined ){
 
                          if(!url_img.includes(reply.statuses[i].entities.media[0].media_url)){
                             
                              $("#fullscreen-image-"+indice).attr("src",reply.statuses[i].entities.media[0].media_url);
                              url_img.push(reply.statuses[i].entities.media[0].media_url);
                              tweets.push({img: reply.statuses[i].entities.media[0].media_url,
-                                             like: reply.statuses[i].favorite_count});
+                                             like: reply.statuses[i].favorite_count,
+                                            user : reply.statuses[i].user.screen_name});
                             if(indice<TOTAL_GRID){
                                 createImgGrilla(indice,reply.statuses[i].entities.media[0].media_url);                                
                             }
@@ -58,7 +66,7 @@ function cargarTweets(hash){
 function cleanImages(){
     for (var i = 0; i < TOTAL_GRID; i++) {
         // $("#gallery-li-"+i).hide();
-        $("#gallery-image-"+i).attr("src","default.png");
+        $("#gallery-image-"+i).attr("src","");
     }
 }
 
@@ -198,27 +206,14 @@ $('#img-carrousel').click(function () {
     let indice = $(this)[0].dataset.img;
     $("#imgFullScreen").attr("src",tweets[indice].img);
     $("#likes").find("p").text(tweets[indice].like);
+    $("#twUser").find("p").text("@"+tweets[indice].user);
     $("#section-fullscreen").css({'visibility': 'visible'});
     $("#containerImgFullScreen").css({'visibility': 'visible'});
     $("#containerImgFullScreen").show();
+    $("#likes").show();
     layout='fullscreen';
     nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
 });
-
-
-//show fullscreen - click in grilla 
-// $('[id^=carousel-selector-]').click(function () {
-// var id_selector = $(this).attr("id");
-// var id = /-(\d+)$/.exec(id_selector)[1];
-// $("#imgFullScreen").attr("src",tweets[id].img);
-// $("#likes").find("p").text(tweets[id].like);
-// $("#section-fullscreen").css({'visibility': 'visible'});
-// $("#containerImgFullScreen").css({'visibility': 'visible'});
-// $("#containerImgFullScreen").show();
-// layout='fullscreen';
-// nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
-// });
-
 
 //**************** fullscreen */
 let nextFullScreen;
@@ -229,9 +224,11 @@ let indiceImgFullScreen = 0;
 $("#layout-play").click(function () {
     $("#imgFullScreen").attr("src",tweets[indiceImgFullScreen].img);
     $("#likes").find("p").text(tweets[indiceImgFullScreen].like);
+    $("#twUser").find("p").text("@"+tweets[indiceImgFullScreen].user);
     $("#section-fullscreen").css({'visibility': 'visible'});
     $("#containerImgFullScreen").css({'visibility': 'visible'});
     $("#containerImgFullScreen").show();
+    $("#likes").show();
     layout='fullscreen';
     nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
 });
@@ -288,12 +285,15 @@ function animaciones(num,indice) {
     switch (num) {
         case 1:
             $("#likes").css({'opacity': '0'});
+            $("#twUser").css({'opacity': '0'});
             $("#containerImgFullScreen").css({'top':'110%'});
             $("#containerImgFullScreen").bind("transitionend", function(){ 
                 $("#imgFullScreen").attr('src',tweets[indice].img);
                 $("#likes").find("p").text(tweets[indice].like);
+                $("#twUser").find("p").text("@"+tweets[indice].user);
                 $("#containerImgFullScreen").css({'top':'8%'});
                 $("#likes").css({'opacity': '1'});
+                $("#twUser").css({'opacity': '1'});
                 animacion = false;
             });
             break;
@@ -301,11 +301,14 @@ function animaciones(num,indice) {
         case 2:
         $("#likes").css({'visibility': 'hidden'});
         $("#likes").css({'top': '-100%'});
+        $("#twUser").css({'opacity': '0'});
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
              $("#imgFullScreen").attr('src',tweets[indice].img);
              $("#likes").find("p").text(tweets[indice].like);
+             $("#twUser").find("p").text("@"+tweets[indice].user);
              $("#containerImgFullScreen").css({'opacity':'1'});
+             $("#twUser").css({'opacity': '1'});
              $("#likes").css({'visibility': 'visible'});
              $("#likes").css({'top': '80%'});
              animacion = false;
@@ -315,12 +318,15 @@ function animaciones(num,indice) {
         case 3:
         $("#likes").find('p').hide();
         $("#likes").css({'width': '0px', 'height':'0px'});
+        $("#twUser").css({'opacity': '0'});
         $("#containerImgFullScreen").css({'left':'110%'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
             $("#imgFullScreen").attr('src',tweets[indice].img);
             $("#likes").find("p").text(tweets[indice].like);
+            $("#twUser").find("p").text("@"+tweets[indice].user);
             $("#containerImgFullScreen").css({'left':'4%'}); 
-            $("#likes").css({'width': '150px', 'height':'70px'});
+            $("#twUser").css({'opacity': '1'});
+            $("#likes").css({'width': '100px', 'height':'50px'});
             $("#likes").find('p').show(700);
             animacion = false;
         });
@@ -329,25 +335,31 @@ function animaciones(num,indice) {
         case 4:
         $("#likes").css({'visibility': 'hidden'});
         $("#likes").css({'left': '-100%'});
+        $("#twUser").css({'opacity': '0'});
         $("#containerImgFullScreen").css({'width':'0%'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
             $("#imgFullScreen").attr('src',tweets[indice].img);
             $("#likes").find("p").text(tweets[indice].like);
+            $("#twUser").find("p").text("@"+tweets[indice].user);
             $("#containerImgFullScreen").css({'width': $(window).width()-100});
             $("#likes").css({'visibility': 'visible'});
             $("#likes").css({'left': '80%'});
+            $("#twUser").css({'opacity': '1'});
             animacion = false;
         });
             break;
         default:
         $("#likes").css({'visibility': 'hidden'});
         $("#likes").css({'top': '-100%'});
+        $("#twUser").css({'opacity': '0'});
         $("#containerImgFullScreen").css({'opacity':'0'});
         $("#containerImgFullScreen").bind("transitionend", function(){ 
              $("#imgFullScreen").attr('src',tweets[indice].img);
              $("#likes").find("p").text(tweets[indice].like);
+             $("#twUser").find("p").text("@"+tweets[indice].user);
              $("#containerImgFullScreen").css({'opacity':'1'});
              $("#likes").css({'visibility': 'visible'});
+             $("#twUser").css({'opacity': '1'});
              $("#likes").css({'top': '80%'}); 
              animacion = false;
         });
