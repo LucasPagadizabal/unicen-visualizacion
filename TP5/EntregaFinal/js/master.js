@@ -235,12 +235,11 @@ $('#img-carrousel').click(function () {
 
 //**************** fullscreen */
 let nextFullScreen;
-$("#section-fullscreen").css({'height' : $(window).height() , 'width': $(window).width()});
-$("#containerImgFullScreen").css({'height' : $(window).height()-100 , 'width': $(window).width()-100});
+
 let layout = 'grid';
 let indiceImgFullScreen = 0;
 $("#layout-play").click(function () {
-    console.log('as');
+    toggleFullScreen(document.getElementById('section-fullscreen'));
     $("#imgFullScreen").attr("src",tweets[indiceImgFullScreen].img);
     $("#likes").find("p").text(tweets[indiceImgFullScreen].like);
     $("#twUser").find("p").text("@"+tweets[indiceImgFullScreen].user);
@@ -252,6 +251,32 @@ $("#layout-play").click(function () {
     $("html").css({'overflow-y' : 'hidden'});
     nextFullScreen = setInterval(function(){ $("#next").click() }, 5000);
 });
+
+//funcion de fullscreen
+function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
 
 
 /*exit fullscreen */
@@ -270,6 +295,16 @@ $("#btn-exitFullScreen").click(function(){
     fullscreen='carrousel';
     clearInterval(nextFullScreen);
     $("html").css({'overflow-y' : 'visible'});
+    if (document.cancelFullScreen) {
+        document.cancelFullScreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+
 });
 
 // Movimientos fullscreen
