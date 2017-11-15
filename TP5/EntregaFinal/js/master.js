@@ -371,7 +371,7 @@ function animaciones(num,indice) {
              $("#containerImgFullScreen").css({'opacity':'1'});
              $("#twUser").css({'opacity': '1'});
              $("#likes").css({'visibility': 'visible'});
-             $("#likes").css({'top': '80%'});
+             $("#likes").css({'top': '85%'});
              
              animacion = false;
         });
@@ -410,7 +410,7 @@ function animaciones(num,indice) {
             $("#twUser").find("p").text("@"+tweets[indice].user);
             $("#containerImgFullScreen").css({'width': $(window).width()-100});
             $("#likes").css({'visibility': 'visible'});
-            $("#likes").css({'left': '85%'});
+            $("#likes").css({'left': '86%'});
             $("#twUser").css({'opacity': '1'});
            
             animacion = false;
@@ -430,7 +430,7 @@ function animaciones(num,indice) {
              $("#containerImgFullScreen").css({'opacity':'1'});
              $("#likes").css({'visibility': 'visible'});
              $("#twUser").css({'opacity': '1'});
-             $("#likes").css({'top': '80%'}); 
+             $("#likes").css({'top': '85%'}); 
             
              animacion = false;
         });
