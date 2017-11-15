@@ -130,7 +130,7 @@ class Game{
         this.audioBack.pause();
 
         setTimeout(function () {
-            $('#game').css('filter','blur(2px)');
+            $('#game').css('filter','blur(4px)');
             let time = Minutos.innerHTML+Segundos.innerHTML+Centesimas.innerHTML;
             mostrarModal(totalCoins,time);
         },3000);

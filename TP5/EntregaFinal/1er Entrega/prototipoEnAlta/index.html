@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Visualizador de Imagenes</title>
+
+    <!-- Bootstrap -->
+   <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div id="background-image"></div>
+    <header class="">
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href=""><img id="icon" src="img/icons/icon.png" alt="icono"></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                </div>
+        </nav>
+    </header>
+    <section id="page" class="search transform">
+        <div id="divSearch" class="col-md-offset-1 col-md-10 panel panel-default">
+            <div id="panel-search" class="panel-body col-md-12 text-center">
+               
+                    <form id="form" class="navbar-form" role="search">
+                            <div class="input-group add-on">
+                              <input id="text-search" class="form-control" placeholder="#Hashtag" name="srch-term" id="srch-term" type="text">
+                            <div class="input-group-btn">
+                                <button id="btn-search" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="layout-grid" class="text-center"  hidden><img src="img/icons/grid.png" alt=""></div>
+                    <div id="layout-carrousel" class="text-center" hidden><img src="img/icons/carousel.png" alt=""></div>
+                    <div id="layout-play" class="text-center" hidden><img src="img/icons/play.png" alt=""></div>
+                    <div class="loader" hidden></div>
+                    <div class="loaderFail" hidden><p>Sorry, the service is not available</p></div>
+                <hr hidden>
+                <div id="panel-image" class="row" hidden>
+                        <div id="grilla" class="col-sm-12" id="slider-thumbs">
+                            <!-- Bottom switcher of slider -->
+                            <ul class="hide-bullets">
+                                <li class="col-sm-3 col-md-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-0">
+                                        <img class="img-responsive" id="gallery-image-0" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg">
+                                    </a>
+                                </li>
+            
+                                <li class="col-sm-3 col-md-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-1"><img class="img-responsive" id="gallery-image-1" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-2"><img class="img-responsive" id="gallery-image-2" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-3"><img class="img-responsive" id="gallery-image-3" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-4"><img class="img-responsive" id="gallery-image-4" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-5"><img class="img-responsive" id="gallery-image-5" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-6"><img class="img-responsive" id="gallery-image-6" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-7"><img class="img-responsive" id="gallery-image-7" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-8"><img class="img-responsive" id="gallery-image-8" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-9"><img class="img-responsive" id="gallery-image-9" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-10"><img class="img-responsive" id="gallery-image-10" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+            
+                                <li class="col-sm-3">
+                                    <a class="thumbnail grilla" id="carousel-selector-11"><img class="img-responsive" id="gallery-image-11" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="carrousel" class="col-sm-12" hidden>
+                            <div class="col-xs-12" id="slider">
+                                <!-- Top part of the slider -->
+                                <div class="row">
+                                    <div class="col-sm-12" id="carousel-bounding-box">
+                                        <div class="carousel slide" id="myCarousel">
+                                            <!-- Carousel items -->
+                                            <div class="carousel-inner">
+                                                <div class="active item" data-slide-number="0">
+                                                    <img class="img-responsive img-fluid" id="carousel-image-0" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+            
+                                                <div class="item" data-slide-number="1">
+                                                    <img class="img-responsive img-fluid" id="carousel-image-1" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+            
+                                                <div class="item" data-slide-number="2">
+                                                    <img class="img-responsive img-fluid" id="carousel-image-2" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+            
+                                                <div class="item" data-slide-number="3">
+                                                    <img class="img-responsive img-fluid" id="carousel-image-3" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+            
+                                                <div class="item" data-slide-number="4">
+                                                    <img class="img-responsive" id="carousel-image-4" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+            
+                                                <div class="item" data-slide-number="5">
+                                                    <img class="img-responsive" id="carousel-image-5" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="6">
+                                                    <img class="img-responsive" id="carousel-image-6" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="7">
+                                                    <img class="img-responsive" id="carousel-image-7" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="8">
+                                                    <img class="img-responsive" id="carousel-image-8" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="9">
+                                                    <img class="img-responsive" id="carousel-image-9" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="10">
+                                                    <img class="img-responsive" id="carousel-image-10" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                                
+                                                <div class="item" data-slide-number="11">
+                                                    <img class="img-responsive" id="carousel-image-11" src="https://k31.kn3.net/taringa/0/C/1/2/0/0/KonahsFvZ/F6D.jpg"></div>
+                                            </div>
+                                            <!-- Carousel nav -->
+                                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Slider-->
+                    </div>
+                <!--  -->
+            </div>
+        </div>       
+    </section>
+    <section id="section-fullscreen">
+        <p id="prev">&#60;</p>
+        <div id="btn-exitFullScreen"><span>X</span></div>
+        <div id="containerImgFullScreen">
+            <img id="imgFullScreen" src="" alt="">
+            <div id="likes"><img src="img/heart.png" alt="" srcset=""></div>
+        </div>
+        <p id="next">></p>
+    </section>
+  </body>
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="js/master.js"></script>
+</html>
