@@ -3,8 +3,8 @@ const TOTAL_GRID = 12;
 let cb = new Codebird;
 cb.setProxy("https://cb-proxy.herokuapp.com/");
 let contenedor = $('#contenedor');
-cb.setConsumerKey(key, keySecret);
-cb.setToken(token, tokenSecret);
+cb.setConsumerKey('7oCUSDI0phtJAcA8jBIIBnx2t', 'oNG70iGOeHgjLZMfRP6HZ7ippi46fBWJmjTg4CWLmFETpQ0dhX');
+cb.setToken('923372796713033728-hKClTkkSdMBDE1NfKEKqkjl4sKQZpXS', 'IWVPg2M2JIHph0BWgvgdAYRBYPiNH5MroUBkDjo6JIvi9');
 let tweets = [];
 
 function cargarTweets(hash){
